@@ -33,14 +33,10 @@ export class AllProductsApiService {
         'https://backend-for-applicants.smartoneclub.com/product',
         body
       )
-      .pipe(
-        catchError((err) => {
-          console.error(err);
-          return of();
-        })
-      )
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe({
+        next: (v) => console.log(v),
+        error: (e) => console.error(e),
+        complete: () => console.info('add product complete'),
       });
   }
 
@@ -53,6 +49,10 @@ export class AllProductsApiService {
       .delete<Product>(
         `https://backend-for-applicants.smartoneclub.com/product/${productId}`
       )
-      .subscribe((val) => val);
+      .subscribe({
+        next: (v) => console.log(v),
+        error: (e) => console.error(e),
+        complete: () => console.info('delate product complete'),
+      });
   }
 }

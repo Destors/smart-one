@@ -52,8 +52,8 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
 
   delete() {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
+      message: 'Are you sure you want to delete the selected product?',
+      header: 'Delete product',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.apiService.delProduct(this.product.id!);
