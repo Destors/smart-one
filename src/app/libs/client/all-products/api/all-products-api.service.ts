@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import {
   AddProductFormModel,
+  Product,
   productsGetRes,
 } from '../common/product.interface';
 
@@ -19,7 +20,6 @@ export class AllProductsApiService {
   }
 
   public addProduct(form: AddProductFormModel) {
-    console.log('serviceStart');
     const body = {
       title: form.title,
       description: form.description,
@@ -42,5 +42,17 @@ export class AllProductsApiService {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  public delProduct(productId: number) {
+    console.log('hi from service');
+    console.log(
+      `https://backend-for-applicants.smartoneclub.com/product/${productId}`
+    );
+    return this.http
+      .delete<Product>(
+        `https://backend-for-applicants.smartoneclub.com/product/${productId}`
+      )
+      .subscribe((val) => val);
   }
 }

@@ -5,6 +5,7 @@ import {
   ConfirmEventType,
   MessageService,
 } from 'primeng/api';
+import { AllProductsApiService } from '../../../../api/all-products-api.service';
 import { Product } from '../../../../common/product.interface';
 @Component({
   selector: 'table-action-btn',
@@ -17,7 +18,8 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
   items: MenuItem[] = [];
   constructor(
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private apiService: AllProductsApiService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,8 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
+        this.apiService.delProduct(this.product.id!);
+
         this.messageService.add({
           severity: 'info',
           summary: 'Confirmed',
