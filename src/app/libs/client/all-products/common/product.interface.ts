@@ -1,4 +1,4 @@
-export interface getRes {
+export interface productsGetRes {
   products: Product[];
 }
 

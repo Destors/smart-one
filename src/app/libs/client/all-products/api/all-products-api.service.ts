@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { getRes, Product } from '../common/product.interface';
+import { productsGetRes } from '../common/product.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +9,8 @@ import { getRes, Product } from '../common/product.interface';
 export class AllProductsApiService {
   constructor(private http: HttpClient) {}
 
-  getAllProducts(): Observable<getRes> {
-    return this.http.get<getRes>(
+  getAllProducts(): Observable<productsGetRes> {
+    return this.http.get<productsGetRes>(
       'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
     );
   }
