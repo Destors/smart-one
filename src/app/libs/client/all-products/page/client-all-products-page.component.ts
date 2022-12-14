@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { ClientAllProductsTableComponent } from '../ui/table/client-all-products-table.component';
 
 @Component({
   selector: 'app-client-all-products-page',
@@ -7,7 +14,14 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientAllProductsPageComponent implements OnInit {
-  constructor() {}
+  @ViewChild(ClientAllProductsTableComponent)
+  childTable: ClientAllProductsTableComponent | undefined;
 
+  constructor(public readonly changeDetectorRef: ChangeDetectorRef) {}
+
+  updateChild() {
+    this.childTable!.updateTable();
+    this.changeDetectorRef.detectChanges();
+  }
   ngOnInit(): void {}
 }

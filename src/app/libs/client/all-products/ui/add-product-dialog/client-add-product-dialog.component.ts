@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AllProductsApiService } from '../../api/all-products-api.service';
 import { AddProductFormField } from '../../common/product.interface';
@@ -11,6 +17,8 @@ import { AddProductFormField } from '../../common/product.interface';
 })
 export class ClientAddProductDialogComponent implements OnInit {
   readonly fields = AddProductFormField;
+
+  @Output() newItemEvent = new EventEmitter<string>();
 
   form!: FormGroup;
   submitted = false;
@@ -41,6 +49,7 @@ export class ClientAddProductDialogComponent implements OnInit {
     if (this.form.valid && !this.submitted) {
       this.submitted = true;
       this.apiService.addProduct(this.form.value);
+      this.newItemEvent.emit();
     } else return;
   }
 }
