@@ -1,30 +1,60 @@
 <p-button
   (click)="showModalDialog()"
   icon="pi pi-plus"
-  label="Add Product"
+  label="Add new product"
 ></p-button>
 <p-dialog
-  header="Header"
+  header="Add new product"
   [(visible)]="displayModal"
   [modal]="true"
   [style]="{ width: '50vw' }"
   [draggable]="false"
   [resizable]="false"
 >
-  <p class="m-0">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </p>
-  <ng-template pTemplate="footer">
-    <p-button
-      icon="pi pi-check"
-      (click)="displayModal = false"
-      label="Ok"
-      styleClass="p-button-text"
-    ></p-button>
-  </ng-template>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="title" class="block mb-2">Title</label>
+    <input
+      class="mb-2"
+      type="text"
+      id="title"
+      pInputText
+      formControlName="title"
+    />
+
+    <label for="price" class="block mb-2">Price</label>
+    <input
+      class="mb-2"
+      type="text"
+      id="price"
+      pInputText
+      formControlName="price"
+    />
+
+    <label for="brand" class="block mb-2">Brand</label>
+    <input
+      class="mb-2"
+      type="text"
+      id="brand"
+      pInputText
+      formControlName="brand"
+    />
+
+    <label for="category" class="block mb-2">Category</label>
+    <input
+      class="mb-2"
+      type="text"
+      id="category"
+      pInputText
+      formControlName="category"
+    />
+    <div class="flex">
+      <p-button
+        icon="pi pi-plus"
+        label="Save"
+        type="submit"
+        [disabled]="submitted"
+        color="accent"
+      ></p-button>
+    </div>
+  </form>
 </p-dialog>
