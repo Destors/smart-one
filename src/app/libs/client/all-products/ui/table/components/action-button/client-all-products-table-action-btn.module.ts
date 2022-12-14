@@ -6,7 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { RippleModule } from 'primeng/ripple';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [ClientAllProductsTableActionBtnComponent],
@@ -17,8 +18,9 @@ import { ConfirmationService } from 'primeng/api';
     MenuModule,
     RippleModule,
     ConfirmDialogModule,
+    ToastModule,
   ],
   exports: [ClientAllProductsTableActionBtnComponent],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, MessageService],
 })
 export class ClientAllProductsTableActionBtnModule {}
