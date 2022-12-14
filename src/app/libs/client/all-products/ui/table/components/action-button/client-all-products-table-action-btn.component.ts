@@ -10,14 +10,16 @@ import {
   ConfirmEventType,
   MessageService,
 } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { AllProductsApiService } from '../../../../api/all-products-api.service';
 import { Product } from '../../../../common/product.interface';
+import { ClientEditProductDialogComponent } from '../../../edit-product-dialog/client-edit-product-dialog.component';
 @Component({
   selector: 'table-action-btn',
   templateUrl: './client-all-products-table-action-btn.component.html',
   styleUrls: ['./client-all-products-table-action-btn.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService, DialogService],
 })
 export class ClientAllProductsTableActionBtnComponent implements OnInit {
   @Input() product!: Product;
@@ -26,7 +28,8 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private apiService: AllProductsApiService
+    private apiService: AllProductsApiService,
+    public dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +40,9 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
           {
             label: 'Edit',
             icon: 'pi pi-file-edit',
+            command: () => {
+              this.showEditProductDialog();
+            },
           },
           {
             label: 'Delete',
@@ -83,6 +89,14 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
             break;
         }
       },
+    });
+  }
+
+  showEditProductDialog() {
+    const ref = this.dialogService.open(ClientEditProductDialogComponent, {
+      header: 'Edit Product',
+      width: '70%',
+      data: this.product,
     });
   }
 }

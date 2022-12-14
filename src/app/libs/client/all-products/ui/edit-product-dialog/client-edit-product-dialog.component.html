@@ -1,70 +1,56 @@
-<p-button
-  (click)="showModalDialog()"
-  icon="pi pi-plus"
-  label="Add new product"
-></p-button>
-<p-dialog
-  header="Add new product"
-  [(visible)]="displayModal"
-  [modal]="true"
-  [style]="{ width: '50vw' }"
-  [draggable]="false"
-  [resizable]="false"
->
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label for="title" class="block mb-2">Title</label>
-    <input
-      class="mb-2"
-      type="text"
-      id="title"
-      pInputText
-      formControlName="title"
-    />
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label for="title" class="block mb-2">Title</label>
+  <input
+    class="mb-2"
+    type="text"
+    id="title"
+    pInputText
+    formControlName="title"
+  />
 
-    <label for="price" class="block mb-2">Price</label>
-    <input
-      class="mb-2"
-      type="number"
-      id="price"
-      pInputText
-      formControlName="price"
-    />
+  <label for="price" class="block mb-2">Price</label>
+  <input
+    class="mb-2"
+    type="number"
+    id="price"
+    pInputText
+    formControlName="price"
+  />
 
-    <label for="brand" class="block mb-2">Brand</label>
-    <input
-      class="mb-2"
-      type="text"
-      id="brand"
-      pInputText
-      formControlName="brand"
-    />
+  <label for="brand" class="block mb-2">Brand</label>
+  <input
+    class="mb-2"
+    type="text"
+    id="brand"
+    pInputText
+    formControlName="brand"
+  />
 
-    <label for="category" class="block mb-2">Category</label>
-    <input
-      class="mb-2"
-      type="text"
-      id="category"
-      pInputText
-      formControlName="category"
-    />
+  <label for="category" class="block mb-2">Category</label>
+  <input
+    class="mb-2"
+    type="text"
+    id="category"
+    pInputText
+    formControlName="category"
+  />
 
-    <label for="description" class="block mb-2">Description</label>
-    <input
-      class="mb-2"
-      type="text"
-      id="description"
-      pInputText
-      formControlName="description"
-    />
+  <label for="description" class="block mb-2">Description</label>
+  <input
+    class="mb-2"
+    type="text"
+    id="description"
+    pInputText
+    formControlName="description"
+  />
 
-    <div class="flex">
-      <p-button
-        icon="pi pi-plus"
-        label="Save"
-        type="submit"
-        [disabled]="submitted"
-        color="accent"
-      ></p-button>
-    </div>
-  </form>
-</p-dialog>
+  <div class="flex">
+    <p-button
+      icon="pi pi-plus"
+      label="Save"
+      type="submit"
+      [disabled]="submitted"
+      color="accent"
+    ></p-button>
+  </div>
+</form>

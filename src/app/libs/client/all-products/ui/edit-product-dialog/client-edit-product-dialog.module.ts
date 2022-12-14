@@ -18,5 +18,6 @@ import { ClientEditProductDialogComponent } from './client-edit-product-dialog.c
     HttpClientModule,
     ReactiveFormsModule,
   ],
+  exports: [ClientEditProductDialogComponent],
 })
 export class ClientEditProductDialogModule {}

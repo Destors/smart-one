@@ -6,8 +6,9 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { RippleModule } from 'primeng/ripple';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
+import { ClientEditProductDialogModule } from '../../../edit-product-dialog/client-edit-product-dialog.module';
 
 @NgModule({
   declarations: [ClientAllProductsTableActionBtnComponent],
@@ -19,6 +20,8 @@ import { ToastModule } from 'primeng/toast';
     RippleModule,
     ConfirmDialogModule,
     ToastModule,
+    DynamicDialogModule,
+    ClientEditProductDialogModule,
   ],
   exports: [ClientAllProductsTableActionBtnComponent],
 })
