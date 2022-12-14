@@ -2,13 +2,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'client-dashboard-page' },
+  { path: '', pathMatch: 'full', redirectTo: 'all-products-page' },
+
   {
-    path: 'client-dashboard-page',
+    path: 'all-products-page',
     loadChildren: () =>
       import(
-        './libs/client-admin-panel/dashboard/page/client-dashboard-page/client-dashboard-page.module'
-      ).then((m) => m.ClientDashboardPageModule),
+        './libs/client/all-products/page/client-all-products-page.module'
+      ).then((m) => m.ClientAllProductsPageModule),
+  },
+  {
+    path: 'selected-products-page',
+    loadChildren: () =>
+      import(
+        './libs/client/selected-products/page/client-selected-products-page.module'
+      ).then((m) => m.ClientSelectedProductsPageModule),
   },
 ];
 
