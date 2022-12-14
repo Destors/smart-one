@@ -37,9 +37,10 @@ export class ClientAddProductDialogComponent implements OnInit {
 
   onSubmit(): void {
     this.form.markAllAsTouched();
+    console.log(this.form.value);
     if (this.form.valid && !this.submitted) {
       this.submitted = true;
       this.apiService.addProduct(this.form.value);
-    }
+    } else return;
   }
 }

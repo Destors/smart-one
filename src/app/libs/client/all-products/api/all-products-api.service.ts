@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import {
   AddProductFormModel,
   productsGetRes,
@@ -19,16 +19,28 @@ export class AllProductsApiService {
   }
 
   public addProduct(form: AddProductFormModel) {
+    console.log('serviceStart');
     const body = {
       title: form.title,
-      desctiprion: form.description,
+      description: form.description,
       price: form.price,
       brand: form.brand,
       category: form.category,
     };
-    return this.http.post<AddProductFormModel>(
-      'https://backend-for-applicants.smartoneclub.com/product',
-      body
-    );
+
+    this.http
+      .post<AddProductFormModel>(
+        'https://backend-for-applicants.smartoneclub.com/product',
+        body
+      )
+      .pipe(
+        catchError((err) => {
+          console.error(err);
+          return of();
+        })
+      )
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }
