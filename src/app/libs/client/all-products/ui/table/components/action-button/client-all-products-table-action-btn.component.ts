@@ -48,7 +48,7 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
             label: 'Delete',
             icon: 'pi pi-times',
             command: () => {
-              this.delete();
+              this.deleteProduct();
             },
           },
         ],
@@ -56,7 +56,7 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
     ];
   }
 
-  delete() {
+  deleteProduct() {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete the selected product?',
       header: 'Delete product',
