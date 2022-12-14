@@ -57,7 +57,6 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.apiService.delProduct(this.product.id!);
-
         this.messageService.add({
           severity: 'info',
           summary: 'Confirmed',

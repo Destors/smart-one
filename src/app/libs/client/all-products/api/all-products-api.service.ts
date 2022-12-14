@@ -40,11 +40,28 @@ export class AllProductsApiService {
       });
   }
 
+  public patchProduct(productId: number, form: AddProductFormModel) {
+    const body = {
+      title: form.title,
+      description: form.description,
+      price: form.price,
+      brand: form.brand,
+      category: form.category,
+    };
+
+    this.http
+      .patch<Product>(
+        `https://backend-for-applicants.smartoneclub.com/product/${productId}`,
+        body
+      )
+      .subscribe({
+        next: (v) => console.log(v),
+        error: (e) => console.error(e),
+        complete: () => console.info('add product complete'),
+      });
+  }
+
   public delProduct(productId: number) {
-    console.log('hi from service');
-    console.log(
-      `https://backend-for-applicants.smartoneclub.com/product/${productId}`
-    );
     return this.http
       .delete<Product>(
         `https://backend-for-applicants.smartoneclub.com/product/${productId}`

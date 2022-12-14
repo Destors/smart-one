@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AllProductsApiService } from '../../api/all-products-api.service';
-import { AddProductFormField } from '../../common/product.interface';
+import { AddProductFormField, Product } from '../../common/product.interface';
 
 @Component({
   selector: 'app-client-edit-product-dialog',
@@ -11,6 +11,7 @@ import { AddProductFormField } from '../../common/product.interface';
 export class ClientEditProductDialogComponent implements OnInit {
   readonly fields = AddProductFormField;
 
+  @Input() product!: Product;
   form!: FormGroup;
   submitted = false;
   displayModal: boolean = false;
@@ -28,6 +29,14 @@ export class ClientEditProductDialogComponent implements OnInit {
         Validators.required,
       ]),
     });
+
+    this.form.setValue({
+      [AddProductFormField.Title]: this.product.title,
+      [AddProductFormField.Price]: this.product.price,
+      [AddProductFormField.Brand]: this.product.brand,
+      [AddProductFormField.Category]: this.product.category,
+      [AddProductFormField.Description]: this.product.description,
+    });
   }
 
   showModalDialog() {
@@ -39,7 +48,7 @@ export class ClientEditProductDialogComponent implements OnInit {
     console.log(this.form.value);
     if (this.form.valid && !this.submitted) {
       this.submitted = true;
-      this.apiService.addProduct(this.form.value);
+      this.apiService.patchProduct(this.product.id, this.form.value);
     } else return;
   }
 }
