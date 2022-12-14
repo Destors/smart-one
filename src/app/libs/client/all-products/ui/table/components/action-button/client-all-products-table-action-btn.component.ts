@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import {
   ConfirmationService,
   MenuItem,
@@ -11,6 +16,8 @@ import { Product } from '../../../../common/product.interface';
   selector: 'table-action-btn',
   templateUrl: './client-all-products-table-action-btn.component.html',
   styleUrls: ['./client-all-products-table-action-btn.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [ConfirmationService, MessageService],
 })
 export class ClientAllProductsTableActionBtnComponent implements OnInit {
   @Input() product!: Product;
@@ -65,6 +72,7 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
               summary: 'Rejected',
               detail: 'You have rejected',
             });
+            this.confirmationService.close();
             break;
           case ConfirmEventType.CANCEL:
             this.messageService.add({
@@ -72,6 +80,7 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
               summary: 'Cancelled',
               detail: 'You have cancelled',
             });
+            this.confirmationService.close();
             break;
         }
       },
