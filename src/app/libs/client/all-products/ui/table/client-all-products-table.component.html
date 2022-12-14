@@ -1,1 +1,19 @@
-<p>client-all-products-table works!</p>
+<p-table>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>title</th>
+      <th>description</th>
+      <th>price</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body">
+    <ng-container *ngIf="products$ | async as res">
+      <tr *ngFor="let resArr of res.products">
+        <td>{{ resArr.title }}</td>
+        <td>{{ resArr.description }}</td>
+        <td>{{ resArr.price }}</td>
+      </tr></ng-container
+    >
+  </ng-template>
+</p-table>

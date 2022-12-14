@@ -6,5 +6,6 @@ import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [ClientAllProductsTableComponent],
   imports: [CommonModule, TableModule],
+  exports: [ClientAllProductsTableComponent],
 })
 export class ClientAllProductsTableModule {}
