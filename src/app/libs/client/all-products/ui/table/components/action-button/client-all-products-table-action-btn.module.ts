@@ -21,6 +21,5 @@ import { ToastModule } from 'primeng/toast';
     ToastModule,
   ],
   exports: [ClientAllProductsTableActionBtnComponent],
-  providers: [ConfirmationService, MessageService],
 })
 export class ClientAllProductsTableActionBtnModule {}
