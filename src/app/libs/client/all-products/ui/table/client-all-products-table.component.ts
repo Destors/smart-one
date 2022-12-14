@@ -15,5 +15,7 @@ export class ClientAllProductsTableComponent implements OnInit {
 
   constructor(private productsService: AllProductsApiService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.products$.subscribe((val) => console.log(val));
+  }
 }

@@ -3,17 +3,19 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Title</th>
+        <th>Brand</th>
         <th>Description</th>
         <th>Price</th>
         <th>Actions</th>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-response>
+    <ng-template pTemplate="body" let-product>
       <tr>
-        <td>{{ response.title }}</td>
-        <td>{{ response.description }}</td>
-        <td>{{ response.price }}</td>
+        <td>{{ product.title }}</td>
+        <td>{{ product.brand }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
         <td>
           <table-action-btn></table-action-btn>
         </td>
