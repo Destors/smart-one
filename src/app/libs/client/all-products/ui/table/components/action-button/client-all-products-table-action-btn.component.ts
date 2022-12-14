@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { Component, Input, OnInit } from '@angular/core';
+import { ConfirmationService, MenuItem } from 'primeng/api';
+import { Product } from '../../../../common/product.interface';
 
 @Component({
   selector: 'table-action-btn',
@@ -7,8 +8,10 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./client-all-products-table-action-btn.component.scss'],
 })
 export class ClientAllProductsTableActionBtnComponent implements OnInit {
+  @Input() product!: Product;
+
   items: MenuItem[] = [];
-  constructor() {}
+  constructor(private confirmationService: ConfirmationService) {}
 
   ngOnInit(): void {
     this.items = [
@@ -22,9 +25,21 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
           {
             label: 'Delete',
             icon: 'pi pi-times',
+            command: () => {
+              this.delete();
+            },
           },
         ],
       },
     ];
+  }
+
+  delete() {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to perform this action?',
+      accept: () => {
+        //Actual logic to perform a confirmation
+      },
+    });
   }
 }

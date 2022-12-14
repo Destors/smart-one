@@ -5,6 +5,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { RippleModule } from 'primeng/ripple';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [ClientAllProductsTableActionBtnComponent],
@@ -14,7 +16,9 @@ import { RippleModule } from 'primeng/ripple';
     ButtonModule,
     MenuModule,
     RippleModule,
+    ConfirmDialogModule,
   ],
   exports: [ClientAllProductsTableActionBtnComponent],
+  providers: [ConfirmationService],
 })
 export class ClientAllProductsTableActionBtnModule {}
