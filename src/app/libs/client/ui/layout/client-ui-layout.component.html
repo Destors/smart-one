@@ -1,4 +1,7 @@
-<div class="layout-wrapper">
-  <app-client-ui-sidebar></app-client-ui-sidebar>
-  <router-outlet></router-outlet>
+<app-client-ui-header></app-client-ui-header>
+<div class="flex">
+  <div class="mt-5">
+    <app-client-ui-sidebar></app-client-ui-sidebar>
+  </div>
+  <div class="w-10 mx-4"><router-outlet></router-outlet></div>
 </div>
