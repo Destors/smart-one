@@ -55,7 +55,12 @@ export class ClientEditProductDialogComponent implements OnInit {
     console.log(this.form.value);
     if (this.form.valid && !this.submitted) {
       this.submitted = true;
-      this.apiService.patchProduct(this.product.id!, this.form.value);
+      this.apiService
+        .patchProduct(this.product.id!, this.form.value)
+        .subscribe({
+          error: (e) => console.error(e),
+          complete: () => console.info('patch product complete'),
+        });
     } else return;
   }
 }
