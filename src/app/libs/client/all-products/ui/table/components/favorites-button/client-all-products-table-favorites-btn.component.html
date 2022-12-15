@@ -1,0 +1,6 @@
+<form [formGroup]="form">
+  <p-checkbox
+    [formControl]="$any(form).controls['favorites']"
+    value="localState"
+  ></p-checkbox>
+</form>

@@ -6,6 +6,7 @@
         <th>Brand</th>
         <th>Description</th>
         <th>Price</th>
+        <th>Favorites</th>
         <th>Actions</th>
       </tr>
     </ng-template>
@@ -16,6 +17,7 @@
         <td>{{ product.brand }}</td>
         <td>{{ product.description }}</td>
         <td>{{ product.price }}</td>
+        <td><table-favorites-btn [product]="product"></table-favorites-btn></td>
         <td>
           <table-action-btn
             [product]="product"
