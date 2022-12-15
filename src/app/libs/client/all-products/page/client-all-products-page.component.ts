@@ -17,11 +17,10 @@ export class ClientAllProductsPageComponent implements OnInit {
   @ViewChild(ClientAllProductsTableComponent)
   childTable: ClientAllProductsTableComponent | undefined;
 
-  constructor(public readonly changeDetectorRef: ChangeDetectorRef) {}
+  constructor() {}
 
   updateChild() {
     this.childTable!.updateTable();
-    this.changeDetectorRef.detectChanges();
   }
   ngOnInit(): void {}
 }

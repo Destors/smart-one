@@ -50,6 +50,7 @@ export class ClientAddProductDialogComponent implements OnInit {
       this.submitted = true;
       this.apiService.addProduct(this.form.value);
       this.newItemEvent.emit();
+      this.displayModal = false;
     } else return;
   }
 }

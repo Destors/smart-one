@@ -21,7 +21,7 @@ export class ClientAllProductsTableComponent implements OnInit {
   ngOnInit() {}
 
   updateTable(): void {
-    console.log('Update Table from table');
     this.changeDetectorRef.markForCheck();
+    this.products$ = this.productsService.getAllProducts();
   }
 }

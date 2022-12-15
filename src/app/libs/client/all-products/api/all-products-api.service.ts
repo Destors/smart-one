@@ -13,7 +13,7 @@ import {
 export class AllProductsApiService {
   constructor(private http: HttpClient) {}
 
-  public getAllProducts(): Observable<productsGetRes> {
+  public getAllProducts() {
     return this.http.get<productsGetRes>(
       'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
     );
@@ -28,7 +28,7 @@ export class AllProductsApiService {
       category: form.category,
     };
 
-    this.http
+    return this.http
       .post<AddProductFormModel>(
         'https://backend-for-applicants.smartoneclub.com/product',
         body
