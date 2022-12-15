@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -52,6 +53,8 @@ export class ClientAddProductDialogComponent implements OnInit {
         complete: () => {
           this.newItemEvent.emit();
           this.displayModal = false;
+          this.submitted = false;
+          this.form.reset();
         },
       });
     } else return;
