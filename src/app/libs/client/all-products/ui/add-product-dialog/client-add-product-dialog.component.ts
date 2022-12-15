@@ -43,14 +43,19 @@ export class ClientAddProductDialogComponent implements OnInit {
     this.displayModal = true;
   }
 
-  onSubmit(): void {
+  onSubmit() {
     this.form.markAllAsTouched();
     console.log(this.form.value);
     if (this.form.valid && !this.submitted) {
       this.submitted = true;
-      this.apiService.addProduct(this.form.value);
-      this.newItemEvent.emit();
-      this.displayModal = false;
+      this.apiService.addProduct(this.form.value).subscribe({
+        next: (v) => console.log(v),
+        error: (e) => console.error(e),
+        complete: () => {
+          this.newItemEvent.emit();
+          this.displayModal = false;
+        },
+      });
     } else return;
   }
 }

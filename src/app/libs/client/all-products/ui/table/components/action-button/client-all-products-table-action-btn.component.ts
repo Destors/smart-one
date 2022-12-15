@@ -65,12 +65,17 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
       header: 'Delete product',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.apiService.delProduct(this.product.id!);
-        this.newItemEvent.emit();
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Confirmed',
-          detail: 'You have accepted',
+        this.apiService.delProduct(this.product.id!).subscribe({
+          next: (v: any) => console.log(v),
+          error: (e: any) => console.error(e),
+          complete: () => {
+            this.messageService.add({
+              severity: 'info',
+              summary: 'Confirmed',
+              detail: 'You have accepted',
+            });
+            this.newItemEvent.emit();
+          },
         });
       },
       reject: (type: any) => {

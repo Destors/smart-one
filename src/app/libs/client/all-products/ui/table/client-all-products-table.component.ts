@@ -20,8 +20,13 @@ export class ClientAllProductsTableComponent implements OnInit {
 
   ngOnInit() {}
 
-  updateTable(): void {
-    this.changeDetectorRef.markForCheck();
-    this.products$ = this.productsService.getAllProducts();
+  get getProducts(): Observable<productsGetRes> {
+    return (this.products$ = this.productsService.getAllProducts());
+  }
+
+  async updateTable() {
+    await this.getProducts;
+    await this.changeDetectorRef.markForCheck();
+    console.log('update Table from table');
   }
 }

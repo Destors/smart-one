@@ -27,17 +27,10 @@ export class AllProductsApiService {
       brand: form.brand,
       category: form.category,
     };
-
-    return this.http
-      .post<AddProductFormModel>(
-        'https://backend-for-applicants.smartoneclub.com/product',
-        body
-      )
-      .subscribe({
-        next: (v) => console.log(v),
-        error: (e) => console.error(e),
-        complete: () => console.info('add product complete'),
-      });
+    return this.http.post<AddProductFormModel>(
+      'https://backend-for-applicants.smartoneclub.com/product',
+      body
+    );
   }
 
   public patchProduct(productId: number, form: AddProductFormModel) {
@@ -62,14 +55,8 @@ export class AllProductsApiService {
   }
 
   public delProduct(productId: number) {
-    return this.http
-      .delete<Product>(
-        `https://backend-for-applicants.smartoneclub.com/product/${productId}`
-      )
-      .subscribe({
-        next: (v) => console.log(v),
-        error: (e) => console.error(e),
-        complete: () => console.info('delate product complete'),
-      });
+    return this.http.delete<Product>(
+      `https://backend-for-applicants.smartoneclub.com/product/${productId}`
+    );
   }
 }
