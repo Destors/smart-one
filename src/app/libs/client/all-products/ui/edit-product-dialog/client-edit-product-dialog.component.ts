@@ -59,7 +59,9 @@ export class ClientEditProductDialogComponent implements OnInit {
         .patchProduct(this.product.id!, this.form.value)
         .subscribe({
           error: (e) => console.error(e),
-          complete: () => console.info('patch product complete'),
+          complete: () => {
+            this.ref.close();
+          },
         });
     } else return;
   }
