@@ -6,7 +6,12 @@
   [resizable]="false"
   [(visible)]="display"
 >
-  Content
+  <h3>Add new Image</h3>
+  <p-fileUpload
+    name="myfile[]"
+    [customUpload]="true"
+    (uploadHandler)="myUploader($event)"
+  ></p-fileUpload>
 </p-dialog>
 
 <button

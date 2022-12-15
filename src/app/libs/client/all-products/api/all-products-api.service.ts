@@ -33,6 +33,16 @@ export class AllProductsApiService {
     );
   }
 
+  public addProductImage(productId: number, file: any) {
+    const body = {
+      file,
+    };
+    return this.http.post<Product>(
+      `https://backend-for-applicants.smartoneclub.com/product/${productId}/image`,
+      file
+    );
+  }
+
   public patchProduct(productId: number, form: AddProductFormModel) {
     const body = {
       title: form.title,
