@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
 } from '@angular/core';
 import {
   ConfirmationService,
@@ -23,6 +25,7 @@ import { ClientEditProductDialogComponent } from '../../../edit-product-dialog/c
 })
 export class ClientAllProductsTableActionBtnComponent implements OnInit {
   @Input() product!: Product;
+  @Output() newItemEvent = new EventEmitter<string>();
 
   items: MenuItem[] = [];
   constructor(
@@ -63,6 +66,7 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.apiService.delProduct(this.product.id!);
+        this.newItemEvent.emit();
         this.messageService.add({
           severity: 'info',
           summary: 'Confirmed',
