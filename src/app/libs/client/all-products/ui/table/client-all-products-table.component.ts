@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AllProductsApiService } from '../../api/all-products-api.service';
 import { productsGetRes, Product } from '../../common/product.interface';
 
@@ -24,9 +24,13 @@ export class ClientAllProductsTableComponent implements OnInit {
     return (this.products$ = this.productsService.getAllProducts());
   }
 
-  async updateTable() {
-    await this.getProducts;
-    await this.changeDetectorRef.markForCheck();
+  updateTable() {
+    this.getProducts.pipe().subscribe({
+      error: (e) => console.error(e),
+      complete: () => {
+        this.changeDetectorRef.markForCheck();
+      },
+    });
     console.log('update Table from table');
   }
 }
