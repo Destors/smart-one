@@ -1,9 +1,10 @@
-<div class="layout-container">
-  <app-client-ui-header></app-client-ui-header>
-  <div class="sidenav-wrapper">
-    <div class="sidenav"><app-client-ui-sidebar></app-client-ui-sidebar></div>
-    <div class="sidenav-content"><router-outlet></router-outlet></div>
+<div class="relative"><app-client-ui-header></app-client-ui-header></div>
+
+<div class="grid mt-4 mx-2">
+  <div class="col-fixed" style="width: 300px">
+    <app-client-ui-sidebar></app-client-ui-sidebar>
   </div>
+  <div class="col"><router-outlet></router-outlet></div>
 </div>
 
 <!-- <ng-template #noSidenav>

@@ -1,4 +1,4 @@
-<ng-container *ngIf="products$ | async as res">
+<ng-container *ngIf="products$ | async as res; else noProducts">
   <p-table [value]="res.products" [paginator]="true" [rows]="10">
     <ng-template pTemplate="header">
       <tr>
@@ -34,3 +34,4 @@
     </ng-template>
   </p-table>
 </ng-container>
+<ng-template #noProducts><b>No Products</b></ng-template>
