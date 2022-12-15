@@ -1,0 +1,17 @@
+<p-overlayPanel #op [dismissable]="true">
+  <ng-template pTemplate>
+    <p-menu [model]="items"></p-menu>
+  </ng-template>
+</p-overlayPanel>
+<p-confirmDialog
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+></p-confirmDialog>
+<button
+  type="text"
+  icon="pi pi-ellipsis-h"
+  pButton
+  class="p-button-rounded"
+  (click)="op.toggle($event)"
+></button>
+<p-toast></p-toast>

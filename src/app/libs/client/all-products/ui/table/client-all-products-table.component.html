@@ -1,0 +1,36 @@
+<ng-container *ngIf="products$ | async as res">
+  <p-table [value]="res.products">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Brand</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Favorites</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>
+          <add-priduct-image [product]="product"></add-priduct-image>
+        </td>
+        <td>{{ product.title }}</td>
+        <td>{{ product.brand }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <table-favorites-btn [product]="product"></table-favorites-btn>
+        </td>
+        <td>
+          <table-action-btn
+            [product]="product"
+            (newItemEvent)="updateTable()"
+          ></table-action-btn>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-container>
