@@ -1,6 +1,5 @@
-<form [formGroup]="form">
-  <p-checkbox
-    [formControl]="$any(form).controls['favorites']"
-    value="localState"
-  ></p-checkbox>
-</form>
+<input
+  type="checkbox"
+  [(ngModel)]="productLocalState"
+  (ngModelChange)="setProductLocalState()"
+/>
