@@ -4,6 +4,7 @@ import { ClientAllProductsTableComponent } from './client-all-products-table.com
 import { TableModule } from 'primeng/table';
 import { ClientAllProductsTableActionBtnModule } from './components/action-button/client-all-products-table-action-btn.module';
 import { ClientAllProductsTableFavoritesBtnModule } from './components/favorites-button/client-all-products-table-favorites-btn.module';
+import { ClientAddPriductImageDialogModule } from '../add-product-image-dialog/client-add-priduct-image-dialog.module';
 
 @NgModule({
   declarations: [ClientAllProductsTableComponent],
@@ -12,6 +13,7 @@ import { ClientAllProductsTableFavoritesBtnModule } from './components/favorites
     TableModule,
     ClientAllProductsTableActionBtnModule,
     ClientAllProductsTableFavoritesBtnModule,
+    ClientAddPriductImageDialogModule,
   ],
   exports: [ClientAllProductsTableComponent],
 })

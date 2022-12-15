@@ -1,0 +1,17 @@
+<p-dialog
+  header="Product image"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  [(visible)]="display"
+>
+  Content
+</p-dialog>
+
+<button
+  type="button"
+  (click)="showDialog()"
+  icon="pi pi-info-circle"
+  label="Show"
+></button>
