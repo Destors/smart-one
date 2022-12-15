@@ -1,5 +1,5 @@
 <ng-container *ngIf="products$ | async as res">
-  <p-table [value]="res.products">
+  <p-table [value]="res.products" [paginator]="true" [rows]="10">
     <ng-template pTemplate="header">
       <tr>
         <th>Image</th>

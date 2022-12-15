@@ -11,8 +11,10 @@
 .sidenav-wrapper {
   display: flex;
   flex-wrap: wrap;
+  margin: 1.5rem;
   & .sidenav {
     width: 20%;
+    padding-right: 1.5rem;
   }
   & .sidenav-content {
     width: 80%;

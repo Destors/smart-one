@@ -7,7 +7,7 @@ import { ClientAllProductsTableModule } from '../ui/table/client-all-products-ta
 import { AllProductsApiService } from '../api/all-products-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ClientAddProductDialogModule } from '../ui/add-product-dialog/client-add-product-dialog.module';
-
+import { CardModule } from 'primeng/card';
 @NgModule({
   declarations: [ClientAllProductsPageComponent],
   imports: [
@@ -16,6 +16,7 @@ import { ClientAddProductDialogModule } from '../ui/add-product-dialog/client-ad
     ClientAllProductsPageRoutingModule,
     ClientAllProductsTableModule,
     ClientAddProductDialogModule,
+    CardModule,
   ],
   providers: [AllProductsApiService],
 })
