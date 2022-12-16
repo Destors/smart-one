@@ -19,7 +19,7 @@ export class ClientAllProductsPageComponent implements OnInit {
 
   constructor() {}
 
-  updateChild() {
+  updateChildTable() {
     this.childTable!.updateTable();
   }
   ngOnInit(): void {}

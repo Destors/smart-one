@@ -15,7 +15,7 @@
     <!-- handset sidenav START -->
     <p-sidebar [(visible)]="displaySidebar" [baseZIndex]="10000">
       <app-client-ui-sidebar
-        (newItemEvent)="closeHandsetSidenav()"
+        (closeSidenavEvent)="closeHandsetSidenav()"
       ></app-client-ui-sidebar>
     </p-sidebar>
     <!-- handset sidenav END -->

@@ -8,7 +8,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./client-ui-sidebar.component.scss'],
 })
 export class ClientUiSidebarComponent implements OnInit {
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() closeSidenavEvent = new EventEmitter<string>();
 
   items: MenuItem[] = [];
 
@@ -22,7 +22,7 @@ export class ClientUiSidebarComponent implements OnInit {
     //     routerLink: ['all-products-page'],
     //     routerLinkActiveOptions: { exact: true },
     //     command: () => {
-    //       this.newItemEvent.emit();
+    //       this.closeSidenavEvent.emit();
     //     },
     //   },
     //   {
@@ -31,7 +31,7 @@ export class ClientUiSidebarComponent implements OnInit {
     //     routerLink: ['selected-products-page'],
     //     routerLinkActiveOptions: { exact: true },
     //     command: () => {
-    //       this.newItemEvent.emit();
+    //       this.closeSidenavEvent.emit();
     //     },
     //   },
     // ];
@@ -47,7 +47,7 @@ export class ClientUiSidebarComponent implements OnInit {
             routerLink: ['all-products-page'],
             routerLinkActiveOptions: { exact: true },
             command: () => {
-              this.newItemEvent.emit();
+              this.closeSidenavEvent.emit();
             },
           },
           {
@@ -56,7 +56,7 @@ export class ClientUiSidebarComponent implements OnInit {
             routerLink: ['selected-products-page'],
             routerLinkActiveOptions: { exact: true },
             command: () => {
-              this.newItemEvent.emit();
+              this.closeSidenavEvent.emit();
             },
           },
         ],

@@ -29,7 +29,7 @@ export class ClientAllProductsTableActionBtnComponent
   implements OnInit, OnDestroy
 {
   @Input() product!: Product;
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() updateTableEvent = new EventEmitter<string>();
 
   private dialogCloseSubscription = new Subscription();
 
@@ -79,7 +79,7 @@ export class ClientAllProductsTableActionBtnComponent
               summary: 'Confirmed',
               detail: 'Product deleted',
             });
-            this.newItemEvent.emit();
+            this.updateTableEvent.emit();
           },
         });
       },
@@ -114,7 +114,7 @@ export class ClientAllProductsTableActionBtnComponent
     });
     // TODO Remove the event meter from closing the dialog, leave it only for updating the data.
     this.dialogCloseSubscription = ref.onClose.subscribe(() => {
-      this.newItemEvent.emit();
+      this.updateTableEvent.emit();
     });
   }
 

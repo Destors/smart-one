@@ -20,7 +20,7 @@ import { AddProductFormField } from '../../common/product.interface';
 export class ClientAddProductDialogComponent implements OnInit {
   readonly fields = AddProductFormField;
 
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() updateTableEvent = new EventEmitter<string>();
 
   form!: FormGroup;
   submitted = false;
@@ -67,7 +67,7 @@ export class ClientAddProductDialogComponent implements OnInit {
             summary: 'Confirmed',
             detail: `Product ${this.form.value.title} created successfully`,
           });
-          this.newItemEvent.emit();
+          this.updateTableEvent.emit();
           this.displayModal = false;
           this.submitted = false;
           this.form.reset();
