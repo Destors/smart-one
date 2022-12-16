@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -9,6 +9,7 @@ import { ProductFormField, Product } from '../../common/product.interface';
   selector: 'app-client-edit-product-dialog',
   templateUrl: './client-edit-product-dialog.component.html',
   styleUrls: ['./client-edit-product-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientEditProductDialogComponent implements OnInit {
   readonly fields = ProductFormField;
@@ -31,9 +32,7 @@ export class ClientEditProductDialogComponent implements OnInit {
       [ProductFormField.Title]: new FormControl(null, [Validators.required]),
       [ProductFormField.Price]: new FormControl(null, [Validators.required]),
       [ProductFormField.Brand]: new FormControl(null, [Validators.required]),
-      [ProductFormField.Category]: new FormControl(null, [
-        Validators.required,
-      ]),
+      [ProductFormField.Category]: new FormControl(null, [Validators.required]),
       [ProductFormField.Description]: new FormControl(null, [
         Validators.required,
       ]),
