@@ -16,7 +16,7 @@ import { Product } from '../../common/product.interface';
 })
 export class ClientAddPriductImageDialogComponent implements OnInit {
   display: boolean = false;
-  uploadedFiles: any;
+  file: File | undefined;
   @Input() product!: Product;
 
   constructor(
@@ -30,20 +30,15 @@ export class ClientAddPriductImageDialogComponent implements OnInit {
     this.display = true;
   }
 
-  onUpload(event: { files: any }) {
-    for (let file of event.files) {
-      this.uploadedFiles.push(file);
-    }
+  onChange(event: any) {
+    this.file = event.target.files[0];
   }
 
-  myUploader(event: { files: any }) {
-    this.uploadedFiles = event.files;
-    console.log(this.uploadedFiles);
-    this.apiService
-      .addProductImage(this.product.id!, this.uploadedFiles)
-      .subscribe({
-        error: (err) => console.error(err),
-        complete: () => console.log('Uplodar success'),
-      });
+  onUpload() {
+    console.log(this.file);
+    this.apiService.addProductImage(this.product.id!, this.file).subscribe({
+      error: (err) => console.error(err),
+      complete: () => console.log('Uplodar success'),
+    });
   }
 }

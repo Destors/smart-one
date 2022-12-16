@@ -12,7 +12,8 @@ import {
 })
 export class AllProductsApiService {
   // Creating a global variable productsArr$ to avoid unnecessary requests to the server
-  productsArr$: Observable<productHttpResponse | undefined> = this.getAllProducts();
+  productsArr$: Observable<productHttpResponse | undefined> =
+    this.getAllProducts();
 
   constructor(private http: HttpClient) {}
 
@@ -45,12 +46,14 @@ export class AllProductsApiService {
   }
 
   public addProductImage(productId: number, file: any) {
-    const body = {
-      file,
-    };
+    const formData = new FormData();
+    formData.append('file', file);
+    console.log(
+      `https://backend-for-applicants.smartoneclub.com/product/${productId}/image`
+    );
     return this.http.post<Product>(
       `https://backend-for-applicants.smartoneclub.com/product/${productId}/image`,
-      file
+      formData
     );
   }
 

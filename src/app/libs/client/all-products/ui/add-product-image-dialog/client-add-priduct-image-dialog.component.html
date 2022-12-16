@@ -7,11 +7,8 @@
   [(visible)]="display"
 >
   <h3>Add new Image</h3>
-  <p-fileUpload
-    name="myfile[]"
-    [customUpload]="true"
-    (uploadHandler)="myUploader($event)"
-  ></p-fileUpload>
+  <input type="file" (change)="onChange($event)" />
+  <button (click)="onUpload()" class="btn btn-success">Upload</button>
 </p-dialog>
 
 <button
