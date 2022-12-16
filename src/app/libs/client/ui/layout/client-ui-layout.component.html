@@ -1,12 +1,11 @@
-<div class="relative"><app-client-ui-header></app-client-ui-header></div>
-
-<div class="grid mt-4 mx-2">
-  <div class="col-fixed" style="width: 300px">
-    <app-client-ui-sidebar></app-client-ui-sidebar>
+<div class="layout">
+  <div class="layout__navbar">
+    <app-client-ui-header></app-client-ui-header>
   </div>
-  <div class="col"><router-outlet></router-outlet></div>
+  <div class="layout-content">
+    <div class="layout-content__sidenav">
+      <app-client-ui-sidebar></app-client-ui-sidebar>
+    </div>
+    <div class="layout-content__container"><router-outlet></router-outlet></div>
+  </div>
 </div>
-
-<!-- <ng-template #noSidenav>
-  <router-outlet></router-outlet>
-</ng-template> -->

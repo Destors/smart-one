@@ -1,0 +1,21 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  & .layout__navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+  & .layout-content {
+    display: flex;
+    margin-top: 50px;
+    padding-top: 30px;
+    overflow-y: auto;
+    & .layout-content__container {
+      width: 100%;
+    }
+  }
+}
