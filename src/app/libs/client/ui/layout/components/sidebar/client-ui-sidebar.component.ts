@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { OutletContext } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -15,26 +14,6 @@ export class ClientUiSidebarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // this.items = [
-    //   {
-    //     label: 'All Products',
-    //     icon: 'pi pi-pw pi-file',
-    //     routerLink: ['all-products-page'],
-    //     routerLinkActiveOptions: { exact: true },
-    //     command: () => {
-    //       this.closeSidenavEvent.emit();
-    //     },
-    //   },
-    //   {
-    //     label: 'Selected product',
-    //     icon: 'pi pi-fw pi-star',
-    //     routerLink: ['selected-products-page'],
-    //     routerLinkActiveOptions: { exact: true },
-    //     command: () => {
-    //       this.closeSidenavEvent.emit();
-    //     },
-    //   },
-    // ];
     this.items = [
       {
         label: 'General',
