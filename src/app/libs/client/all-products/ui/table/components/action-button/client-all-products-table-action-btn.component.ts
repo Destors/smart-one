@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -13,6 +14,7 @@ import {
   MessageService,
 } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { Subscription } from 'rxjs';
 import { AllProductsApiService } from '../../../../api/all-products-api.service';
 import { Product } from '../../../../common/product.interface';
 import { ClientEditProductDialogComponent } from '../../../edit-product-dialog/client-edit-product-dialog.component';
@@ -23,9 +25,13 @@ import { ClientEditProductDialogComponent } from '../../../edit-product-dialog/c
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ConfirmationService, DialogService],
 })
-export class ClientAllProductsTableActionBtnComponent implements OnInit {
+export class ClientAllProductsTableActionBtnComponent
+  implements OnInit, OnDestroy
+{
   @Input() product!: Product;
   @Output() newItemEvent = new EventEmitter<string>();
+
+  private dialogCloseSubscription = new Subscription();
 
   items: MenuItem[] = [];
   constructor(
@@ -107,9 +113,12 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
       data: this.product,
     });
     // TODO Remove the event meter from closing the dialog, leave it only for updating the data.
-    // TODO Remove memory lick.
-    ref.onClose.subscribe(() => {
+    this.dialogCloseSubscription = ref.onClose.subscribe(() => {
       this.newItemEvent.emit();
     });
+  }
+
+  ngOnDestroy() {
+    this.dialogCloseSubscription.unsubscribe();
   }
 }
