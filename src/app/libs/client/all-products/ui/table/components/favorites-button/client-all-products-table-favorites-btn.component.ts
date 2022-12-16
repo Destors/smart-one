@@ -36,7 +36,7 @@ export class ClientAllProductsTableFavoritesBtnComponent implements OnInit {
       this.messageService.add({
         severity: 'info',
         summary: 'Removed',
-        detail: 'Product removed from favorites',
+        detail: `Product ${this.product.title} removed from favorites`,
       });
     } else {
       this.localStorage.setItem(
@@ -46,7 +46,7 @@ export class ClientAllProductsTableFavoritesBtnComponent implements OnInit {
       this.messageService.add({
         severity: 'success',
         summary: 'Created',
-        detail: 'Product added to favorites',
+        detail: `Product ${this.product.title} added to favorites`,
       });
       console.log('Add local');
     }
