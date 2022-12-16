@@ -4,6 +4,7 @@ import { ClientUiLayoutComponent } from './client-ui-layout.component';
 import { RouterModule } from '@angular/router';
 import { ClientUiSidebarModule } from './components/sidebar/client-ui-sidebar.module';
 import { ClientUiHeaderModule } from './components/header/client-ui-header/client-ui-header.module';
+import { ContainerModule } from 'src/app/libs/ui/container/container.module';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { ClientUiHeaderModule } from './components/header/client-ui-header/clien
     RouterModule,
     ClientUiSidebarModule,
     ClientUiHeaderModule,
+    ContainerModule,
   ],
   declarations: [ClientUiLayoutComponent],
   exports: [ClientUiLayoutComponent],
