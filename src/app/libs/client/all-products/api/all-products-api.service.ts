@@ -17,18 +17,17 @@ export class AllProductsApiService {
   constructor(private http: HttpClient) {}
 
   public getAllProducts() {
-    this.productsArr$ = this.http
+    return (this.productsArr$ = this.http
       .get<productsGetRes>(
         'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
       )
       .pipe(
         shareReplay(1),
         catchError((error: HttpErrorResponse) => {
-          console.error(error);
+          console.error(error.message);
           return (this.productsArr$ = of(undefined));
         })
-      );
-    return this.productsArr$;
+      ));
   }
 
   public addProduct(form: AddProductFormModel) {

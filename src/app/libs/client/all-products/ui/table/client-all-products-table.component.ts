@@ -31,7 +31,6 @@ export class ClientAllProductsTableComponent implements OnInit {
       error: (e: any) => console.error(e),
       complete: () => {
         this.changeDetectorRef.markForCheck();
-        console.log('update Table from table');
       },
     });
   }
