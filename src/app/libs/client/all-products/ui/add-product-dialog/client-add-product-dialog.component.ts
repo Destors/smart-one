@@ -58,7 +58,7 @@ export class ClientAddProductDialogComponent implements OnInit {
           this.messageService.add({
             severity: 'success',
             summary: 'Confirmed',
-            detail: 'Product created successfully',
+            detail: `Product ${this.form.value.title} created successfully`,
           });
           this.newItemEvent.emit();
           this.displayModal = false;
