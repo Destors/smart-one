@@ -108,11 +108,6 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
     });
 
     ref.onClose.subscribe(() => {
-      this.messageService.add({
-        severity: 'info',
-        summary: 'Confirmed',
-        detail: 'You have accepted',
-      });
       this.newItemEvent.emit();
     });
   }
