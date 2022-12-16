@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AllProductsApiService } from '../../api/all-products-api.service';
-import { AddProductFormField, Product } from '../../common/product.interface';
+import { ProductFormField, Product } from '../../common/product.interface';
 
 @Component({
   selector: 'app-client-edit-product-dialog',
@@ -11,7 +11,7 @@ import { AddProductFormField, Product } from '../../common/product.interface';
   styleUrls: ['./client-edit-product-dialog.component.scss'],
 })
 export class ClientEditProductDialogComponent implements OnInit {
-  readonly fields = AddProductFormField;
+  readonly fields = ProductFormField;
 
   product: Product;
   form!: FormGroup;
@@ -28,23 +28,23 @@ export class ClientEditProductDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      [AddProductFormField.Title]: new FormControl(null, [Validators.required]),
-      [AddProductFormField.Price]: new FormControl(null, [Validators.required]),
-      [AddProductFormField.Brand]: new FormControl(null, [Validators.required]),
-      [AddProductFormField.Category]: new FormControl(null, [
+      [ProductFormField.Title]: new FormControl(null, [Validators.required]),
+      [ProductFormField.Price]: new FormControl(null, [Validators.required]),
+      [ProductFormField.Brand]: new FormControl(null, [Validators.required]),
+      [ProductFormField.Category]: new FormControl(null, [
         Validators.required,
       ]),
-      [AddProductFormField.Description]: new FormControl(null, [
+      [ProductFormField.Description]: new FormControl(null, [
         Validators.required,
       ]),
     });
 
     this.form.setValue({
-      [AddProductFormField.Title]: this.product.title,
-      [AddProductFormField.Price]: this.product.price,
-      [AddProductFormField.Brand]: this.product.brand,
-      [AddProductFormField.Category]: this.product.category,
-      [AddProductFormField.Description]: this.product.description,
+      [ProductFormField.Title]: this.product.title,
+      [ProductFormField.Price]: this.product.price,
+      [ProductFormField.Brand]: this.product.brand,
+      [ProductFormField.Category]: this.product.category,
+      [ProductFormField.Description]: this.product.description,
     });
   }
 

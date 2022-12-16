@@ -13,7 +13,7 @@ export interface Product {
 
 export interface AddProductFormModel extends Product {}
 
-export enum AddProductFormField {
+export enum ProductFormField {
   Title = 'title',
   Price = 'price',
   Brand = 'brand',

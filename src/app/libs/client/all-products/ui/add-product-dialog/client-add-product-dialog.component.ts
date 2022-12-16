@@ -9,7 +9,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { AllProductsApiService } from '../../api/all-products-api.service';
-import { AddProductFormField } from '../../common/product.interface';
+import { ProductFormField } from '../../common/product.interface';
 
 @Component({
   selector: 'app-client-add-product-dialog',
@@ -18,7 +18,7 @@ import { AddProductFormField } from '../../common/product.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientAddProductDialogComponent implements OnInit {
-  readonly fields = AddProductFormField;
+  readonly fields = ProductFormField;
 
   @Output() updateTableEvent = new EventEmitter<string>();
 
@@ -32,13 +32,13 @@ export class ClientAddProductDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      [AddProductFormField.Title]: new FormControl(null, [Validators.required]),
-      [AddProductFormField.Price]: new FormControl(null, [Validators.required]),
-      [AddProductFormField.Brand]: new FormControl(null, [Validators.required]),
-      [AddProductFormField.Category]: new FormControl(null, [
+      [ProductFormField.Title]: new FormControl(null, [Validators.required]),
+      [ProductFormField.Price]: new FormControl(null, [Validators.required]),
+      [ProductFormField.Brand]: new FormControl(null, [Validators.required]),
+      [ProductFormField.Category]: new FormControl(null, [
         Validators.required,
       ]),
-      [AddProductFormField.Description]: new FormControl(null, [
+      [ProductFormField.Description]: new FormControl(null, [
         Validators.required,
       ]),
     });
