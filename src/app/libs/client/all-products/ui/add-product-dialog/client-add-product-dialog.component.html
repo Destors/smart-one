@@ -18,7 +18,18 @@
       id="title"
       pInputText
       formControlName="title"
+      [class.ng-dirty]="
+        form.get('title')?.hasError('required') && form.get('title')?.touched
+      "
     />
+    <small
+      class="p-error block mb-2"
+      *ngIf="
+        form.get('title')?.hasError('required') && form.get('title')?.touched
+      "
+    >
+      This field is required.
+    </small>
 
     <label for="price" class="block mb-2">Price*</label>
     <input
@@ -27,7 +38,18 @@
       id="price"
       pInputText
       formControlName="price"
+      [class.ng-dirty]="
+        form.get('price')?.hasError('required') && form.get('price')?.touched
+      "
     />
+    <small
+      class="p-error block"
+      *ngIf="
+        form.get('price')?.hasError('required') && form.get('price')?.touched
+      "
+    >
+      This field is required.
+    </small>
 
     <label for="brand" class="block mb-2">Brand*</label>
     <input
@@ -36,7 +58,18 @@
       id="brand"
       pInputText
       formControlName="brand"
+      [class.ng-dirty]="
+        form.get('brand')?.hasError('required') && form.get('brand')?.touched
+      "
     />
+    <small
+      class="p-error block"
+      *ngIf="
+        form.get('brand')?.hasError('required') && form.get('brand')?.touched
+      "
+    >
+      This field is required.
+    </small>
 
     <label for="category" class="block mb-2">Category*</label>
     <input
@@ -45,7 +78,20 @@
       id="category"
       pInputText
       formControlName="category"
+      [class.ng-dirty]="
+        form.get('category')?.hasError('required') &&
+        form.get('category')?.touched
+      "
     />
+    <small
+      class="p-error block"
+      *ngIf="
+        form.get('category')?.hasError('required') &&
+        form.get('category')?.touched
+      "
+    >
+      This field is required.
+    </small>
 
     <label for="description" class="block mb-2">Description*</label>
     <textarea
@@ -56,7 +102,20 @@
       type="text"
       id="description"
       formControlName="description"
+      [class.ng-dirty]="
+        form.get('description')?.hasError('required') &&
+        form.get('description')?.touched
+      "
     ></textarea>
+    <small
+      class="p-error block"
+      *ngIf="
+        form.get('description')?.hasError('required') &&
+        form.get('description')?.touched
+      "
+    >
+      This field is required.
+    </small>
 
     <div class="flex justify-content-end mt-3">
       <p-button

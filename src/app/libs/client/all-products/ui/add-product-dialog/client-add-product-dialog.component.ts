@@ -66,6 +66,11 @@ export class ClientAddProductDialogComponent implements OnInit {
           this.form.reset();
         },
       });
-    } else return;
+    } else
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Error',
+        detail: 'Please fill in all the fields.',
+      });
   }
 }
