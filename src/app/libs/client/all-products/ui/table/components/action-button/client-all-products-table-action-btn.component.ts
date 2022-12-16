@@ -106,7 +106,8 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
       width: '70%',
       data: this.product,
     });
-
+    // TODO Remove the event meter from closing the dialog, leave it only for updating the data.
+    // TODO Remove memory lick.
     ref.onClose.subscribe(() => {
       this.newItemEvent.emit();
     });

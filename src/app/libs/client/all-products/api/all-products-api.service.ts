@@ -54,6 +54,7 @@ export class AllProductsApiService {
     );
   }
 
+  // TODO Send only modified fields.
   public patchProduct(productId: number, form: AddProductFormModel) {
     const body = {
       title: form.title,
