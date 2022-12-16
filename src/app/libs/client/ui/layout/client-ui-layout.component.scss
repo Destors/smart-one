@@ -10,6 +10,12 @@
     left: 0;
     right: 0;
     z-index: 2;
+    & .layout__sidebar-btn {
+      display: inline-block;
+      @include store-mixins.media-tablet-up() {
+        display: none;
+      }
+    }
   }
   & .layout-content {
     display: flex;
@@ -20,8 +26,9 @@
       display: none;
       @include store-mixins.media-tablet-up() {
         display: block;
-        width: 400px;
+        width: 350px;
         margin-left: 20px;
+        height: 100%;
       }
     }
     & .layout-content__container {

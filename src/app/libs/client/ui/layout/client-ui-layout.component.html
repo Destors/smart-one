@@ -1,8 +1,20 @@
 <div class="layout">
   <div class="layout__navbar">
-    <app-client-ui-header></app-client-ui-header>
+    <app-client-ui-header>
+      <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-align-justify"
+        class="layout__sidebar-btn p-button-rounded p-button-text"
+        (click)="displaySidebar = true"
+      ></button>
+    </app-client-ui-header>
   </div>
   <div class="layout-content">
+    <p-sidebar [(visible)]="displaySidebar" [baseZIndex]="10000">
+      <app-client-ui-sidebar></app-client-ui-sidebar>
+    </p-sidebar>
     <div class="layout-content__sidenav">
       <app-client-ui-sidebar></app-client-ui-sidebar>
     </div>
