@@ -13,7 +13,9 @@
   </div>
   <div class="layout-content">
     <p-sidebar [(visible)]="displaySidebar" [baseZIndex]="10000">
-      <app-client-ui-sidebar></app-client-ui-sidebar>
+      <app-client-ui-sidebar
+        (newItemEvent)="closeHandsetSidenav()"
+      ></app-client-ui-sidebar>
     </p-sidebar>
     <div class="layout-content__sidenav">
       <app-client-ui-sidebar></app-client-ui-sidebar>
