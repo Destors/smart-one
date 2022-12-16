@@ -8,6 +8,8 @@ import { AllProductsApiService } from '../api/all-products-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ClientAddProductDialogModule } from '../ui/add-product-dialog/client-add-product-dialog.module';
 import { CardModule } from 'primeng/card';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [ClientAllProductsPageComponent],
   imports: [
@@ -16,8 +18,9 @@ import { CardModule } from 'primeng/card';
     ClientAllProductsPageRoutingModule,
     ClientAllProductsTableModule,
     ClientAddProductDialogModule,
+    ToastModule,
     CardModule,
   ],
-  providers: [AllProductsApiService],
+  providers: [AllProductsApiService, MessageService],
 })
 export class ClientAllProductsPageModule {}

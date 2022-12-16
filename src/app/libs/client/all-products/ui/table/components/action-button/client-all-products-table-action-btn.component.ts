@@ -21,7 +21,7 @@ import { ClientEditProductDialogComponent } from '../../../edit-product-dialog/c
   templateUrl: './client-all-products-table-action-btn.component.html',
   styleUrls: ['./client-all-products-table-action-btn.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ConfirmationService, MessageService, DialogService],
+  providers: [ConfirmationService, DialogService],
 })
 export class ClientAllProductsTableActionBtnComponent implements OnInit {
   @Input() product!: Product;
@@ -69,34 +69,34 @@ export class ClientAllProductsTableActionBtnComponent implements OnInit {
           error: (e) => console.error(e),
           complete: () => {
             this.messageService.add({
-              severity: 'info',
+              severity: 'success',
               summary: 'Confirmed',
-              detail: 'You have accepted',
+              detail: 'Product deleted',
             });
             this.newItemEvent.emit();
           },
         });
       },
-      reject: (type: any) => {
-        switch (type) {
-          case ConfirmEventType.REJECT:
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Rejected',
-              detail: 'You have rejected',
-            });
-            this.confirmationService.close();
-            break;
-          case ConfirmEventType.CANCEL:
-            this.messageService.add({
-              severity: 'warn',
-              summary: 'Cancelled',
-              detail: 'You have cancelled',
-            });
-            this.confirmationService.close();
-            break;
-        }
-      },
+      // reject: (type: any) => {
+      //   switch (type) {
+      //     case ConfirmEventType.REJECT:
+      //       this.messageService.add({
+      //         severity: 'error',
+      //         summary: 'Rejected',
+      //         detail: 'You have rejected',
+      //       });
+      //       this.confirmationService.close();
+      //       break;
+      //     case ConfirmEventType.CANCEL:
+      //       this.messageService.add({
+      //         severity: 'warn',
+      //         summary: 'Cancelled',
+      //         detail: 'You have cancelled',
+      //       });
+      //       this.confirmationService.close();
+      //       break;
+      //   }
+      // },
     });
   }
 
