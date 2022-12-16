@@ -1,27 +1,23 @@
 # SmartOne
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
+This project is a CRUD application with partial use of local storage. Completed it as a test task in one of the companies.
 
-## Development server
+WIP 12/16/2022
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technological stack of the project:
 
-## Code scaffolding
+<ul>
+  <li>Angular 14</li>
+  <li>RxJs</li>
+  <li>Type Script</li>
+  <li>PrimeNg & PrimeFlex</li>
+  <li>HTTP Backend on: https://www.postman.com/</li>
+</ul>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Methodology:
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<ul>
+  <li>NX Architecture pattern without NX Library</li>
+  <li>SOLID</li>
+  <li>Strong typing typescript</li>
+</ul>
