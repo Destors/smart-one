@@ -38,7 +38,15 @@ export class ClientAddPriductImageDialogComponent implements OnInit {
     console.log(this.file);
     this.apiService.addProductImage(this.product.id!, this.file).subscribe({
       error: (err) => console.error(err),
-      complete: () => console.log('Uplodar success'),
+      complete: () => {
+        console.log('Uplodar success');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Confirmed',
+          detail: 'Product img uploaded',
+        });
+        this.display = false;
+      },
     });
   }
 }
