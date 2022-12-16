@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AllProductsApiService } from '../../api/all-products-api.service';
 import { AddProductFormField, Product } from '../../common/product.interface';
@@ -19,7 +20,8 @@ export class ClientEditProductDialogComponent implements OnInit {
   constructor(
     private apiService: AllProductsApiService,
     public ref: DynamicDialogRef,
-    public config: DynamicDialogConfig
+    public config: DynamicDialogConfig,
+    private messageService: MessageService
   ) {
     this.product = config.data;
   }
@@ -60,6 +62,11 @@ export class ClientEditProductDialogComponent implements OnInit {
         .subscribe({
           error: (e) => console.error(e),
           complete: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Confirmed',
+              detail: 'Product data changed',
+            });
             this.ref.close();
           },
         });

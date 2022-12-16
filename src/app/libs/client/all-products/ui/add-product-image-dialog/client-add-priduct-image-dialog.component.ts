@@ -13,7 +13,6 @@ import { Product } from '../../common/product.interface';
   templateUrl: './client-add-priduct-image-dialog.component.html',
   styleUrls: ['./client-add-priduct-image-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [MessageService],
 })
 export class ClientAddPriductImageDialogComponent implements OnInit {
   display: boolean = false;

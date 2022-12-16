@@ -7,57 +7,78 @@
   header="Add new product"
   [(visible)]="displayModal"
   [modal]="true"
-  [style]="{ width: '50vw' }"
   [draggable]="false"
   [resizable]="false"
 >
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label for="title" class="block mb-2">Title</label>
+    <label for="title" class="block mb-2">Title*</label>
     <input
       class="mb-2"
       type="text"
       id="title"
       pInputText
       formControlName="title"
+      [class.ng-dirty]="getFormValidator('title')"
     />
+    <small class="p-error block mb-2" *ngIf="getFormValidator('title')">
+      This field is required.
+    </small>
 
-    <label for="price" class="block mb-2">Price</label>
+    <label for="price" class="block mb-2">Price*</label>
     <input
       class="mb-2"
       type="number"
       id="price"
       pInputText
       formControlName="price"
+      [class.ng-dirty]="getFormValidator('price')"
     />
+    <small class="p-error block" *ngIf="getFormValidator('price')">
+      This field is required.
+    </small>
 
-    <label for="brand" class="block mb-2">Brand</label>
+    <label for="brand" class="block mb-2">Brand*</label>
     <input
       class="mb-2"
       type="text"
       id="brand"
       pInputText
       formControlName="brand"
+      [class.ng-dirty]="getFormValidator('brand')"
     />
+    <small class="p-error block" *ngIf="getFormValidator('brand')">
+      This field is required.
+    </small>
 
-    <label for="category" class="block mb-2">Category</label>
+    <label for="category" class="block mb-2">Category*</label>
     <input
       class="mb-2"
       type="text"
       id="category"
       pInputText
       formControlName="category"
+      [class.ng-dirty]="getFormValidator('category')"
     />
+    <small class="p-error block" *ngIf="getFormValidator('category')">
+      This field is required.
+    </small>
 
-    <label for="description" class="block mb-2">Description</label>
-    <input
-      class="mb-2"
+    <label for="description" class="block mb-2">Description*</label>
+    <textarea
+      rows="5"
+      cols="30"
+      pInputTextarea
+      [autoResize]="true"
       type="text"
       id="description"
-      pInputText
       formControlName="description"
-    />
+      [class.ng-dirty]="getFormValidator('description')"
+    ></textarea>
+    <small class="p-error block" *ngIf="getFormValidator('description')">
+      This field is required.
+    </small>
 
-    <div class="flex">
+    <div class="flex justify-content-end mt-3">
       <p-button
         icon="pi pi-plus"
         label="Save"

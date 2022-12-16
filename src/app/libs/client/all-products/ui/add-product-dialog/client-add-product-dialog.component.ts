@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { AllProductsApiService } from '../../api/all-products-api.service';
 import { AddProductFormField } from '../../common/product.interface';
 
@@ -23,7 +25,10 @@ export class ClientAddProductDialogComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
   displayModal: boolean = false;
-  constructor(private apiService: AllProductsApiService) {}
+  constructor(
+    private apiService: AllProductsApiService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -39,6 +44,13 @@ export class ClientAddProductDialogComponent implements OnInit {
     });
   }
 
+  public getFormValidator(formControlName: string) {
+    return (
+      this.form.get(`${formControlName}`)?.hasError('required') &&
+      this.form.get(`${formControlName}`)?.touched
+    );
+  }
+
   showModalDialog() {
     this.displayModal = true;
   }
@@ -50,10 +62,22 @@ export class ClientAddProductDialogComponent implements OnInit {
       this.apiService.addProduct(this.form.value).subscribe({
         error: (e) => console.error(e),
         complete: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Confirmed',
+            detail: `Product ${this.form.value.title} created successfully`,
+          });
           this.newItemEvent.emit();
           this.displayModal = false;
+          this.submitted = false;
+          this.form.reset();
         },
       });
-    } else return;
+    } else
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Error',
+        detail: 'Please fill in all the fields.',
+      });
   }
 }

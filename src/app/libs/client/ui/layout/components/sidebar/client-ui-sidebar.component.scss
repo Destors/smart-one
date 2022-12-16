@@ -1,0 +1,9 @@
+// ::ng-deep p-card {
+//   min-height: 100%;
+// }
+
+::ng-deep a.p-menuitem-link-active {
+  & .p-menuitem-text {
+    font-weight: 700;
+  }
+}
