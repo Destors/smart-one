@@ -15,7 +15,7 @@ import { Product } from '../../common/product.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientAddPriductImageDialogComponent implements OnInit {
-  display: boolean = false;
+  addImgDialogDisplay: boolean = false;
   file: File | undefined;
   @Input() product!: Product;
 
@@ -27,7 +27,9 @@ export class ClientAddPriductImageDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   showDialog() {
-    this.display = true;
+    return this.addImgDialogDisplay
+      ? (this.addImgDialogDisplay = false)
+      : (this.addImgDialogDisplay = true);
   }
 
   onChange(event: any) {
@@ -45,8 +47,8 @@ export class ClientAddPriductImageDialogComponent implements OnInit {
           summary: 'Confirmed',
           detail: 'Product img uploaded',
         });
-        this.display = false;
       },
     });
+    this.showDialog();
   }
 }
