@@ -4,7 +4,7 @@ import { catchError, Observable, of, shareReplay } from 'rxjs';
 import {
   AddProductFormModel,
   Product,
-  productsGetRes,
+  productHttpResponse,
 } from '../common/product.interface';
 
 @Injectable({
@@ -12,13 +12,13 @@ import {
 })
 export class AllProductsApiService {
   // Creating a global variable productsArr$ to avoid unnecessary requests to the server
-  productsArr$: Observable<productsGetRes | undefined> = this.getAllProducts();
+  productsArr$: Observable<productHttpResponse | undefined> = this.getAllProducts();
 
   constructor(private http: HttpClient) {}
 
   public getAllProducts() {
     return (this.productsArr$ = this.http
-      .get<productsGetRes>(
+      .get<productHttpResponse>(
         'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
       )
       .pipe(
