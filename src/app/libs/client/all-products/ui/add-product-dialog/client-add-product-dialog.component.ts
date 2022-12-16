@@ -44,6 +44,13 @@ export class ClientAddProductDialogComponent implements OnInit {
     });
   }
 
+  public getFormValidator(formControlName: string) {
+    return (
+      this.form.get(`${formControlName}`)?.hasError('required') &&
+      this.form.get(`${formControlName}`)?.touched
+    );
+  }
+
   showModalDialog() {
     this.displayModal = true;
   }

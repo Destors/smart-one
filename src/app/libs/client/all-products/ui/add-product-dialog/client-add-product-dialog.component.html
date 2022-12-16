@@ -18,16 +18,9 @@
       id="title"
       pInputText
       formControlName="title"
-      [class.ng-dirty]="
-        form.get('title')?.hasError('required') && form.get('title')?.touched
-      "
+      [class.ng-dirty]="getFormValidator('title')"
     />
-    <small
-      class="p-error block mb-2"
-      *ngIf="
-        form.get('title')?.hasError('required') && form.get('title')?.touched
-      "
-    >
+    <small class="p-error block mb-2" *ngIf="getFormValidator('title')">
       This field is required.
     </small>
 
@@ -38,16 +31,9 @@
       id="price"
       pInputText
       formControlName="price"
-      [class.ng-dirty]="
-        form.get('price')?.hasError('required') && form.get('price')?.touched
-      "
+      [class.ng-dirty]="getFormValidator('price')"
     />
-    <small
-      class="p-error block"
-      *ngIf="
-        form.get('price')?.hasError('required') && form.get('price')?.touched
-      "
-    >
+    <small class="p-error block" *ngIf="getFormValidator('price')">
       This field is required.
     </small>
 
@@ -58,16 +44,9 @@
       id="brand"
       pInputText
       formControlName="brand"
-      [class.ng-dirty]="
-        form.get('brand')?.hasError('required') && form.get('brand')?.touched
-      "
+      [class.ng-dirty]="getFormValidator('brand')"
     />
-    <small
-      class="p-error block"
-      *ngIf="
-        form.get('brand')?.hasError('required') && form.get('brand')?.touched
-      "
-    >
+    <small class="p-error block" *ngIf="getFormValidator('brand')">
       This field is required.
     </small>
 
@@ -78,18 +57,9 @@
       id="category"
       pInputText
       formControlName="category"
-      [class.ng-dirty]="
-        form.get('category')?.hasError('required') &&
-        form.get('category')?.touched
-      "
+      [class.ng-dirty]="getFormValidator('category')"
     />
-    <small
-      class="p-error block"
-      *ngIf="
-        form.get('category')?.hasError('required') &&
-        form.get('category')?.touched
-      "
-    >
+    <small class="p-error block" *ngIf="getFormValidator('category')">
       This field is required.
     </small>
 
@@ -102,18 +72,9 @@
       type="text"
       id="description"
       formControlName="description"
-      [class.ng-dirty]="
-        form.get('description')?.hasError('required') &&
-        form.get('description')?.touched
-      "
+      [class.ng-dirty]="getFormValidator('description')"
     ></textarea>
-    <small
-      class="p-error block"
-      *ngIf="
-        form.get('description')?.hasError('required') &&
-        form.get('description')?.touched
-      "
-    >
+    <small class="p-error block" *ngIf="getFormValidator('description')">
       This field is required.
     </small>
 
