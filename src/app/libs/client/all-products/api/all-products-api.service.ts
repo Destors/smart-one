@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
+import { Observable, of, shareReplay } from 'rxjs';
 import {
   AddProductFormModel,
   Product,
@@ -11,12 +11,18 @@ import {
   providedIn: 'root',
 })
 export class AllProductsApiService {
+  // Creating a global variable productsArr$ to avoid unnecessary requests to the server
+  productsArr$: Observable<productsGetRes | undefined> = this.getAllProducts();
+
   constructor(private http: HttpClient) {}
 
   public getAllProducts() {
-    return this.http.get<productsGetRes>(
-      'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
-    );
+    this.productsArr$ = this.http
+      .get<productsGetRes>(
+        'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
+      )
+      .pipe(shareReplay(1));
+    return this.productsArr$;
   }
 
   public addProduct(form: AddProductFormModel) {
