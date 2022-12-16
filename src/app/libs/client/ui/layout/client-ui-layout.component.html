@@ -12,14 +12,18 @@
     </app-client-ui-header>
   </div>
   <div class="layout-content">
+    <!-- handset sidenav START -->
     <p-sidebar [(visible)]="displaySidebar" [baseZIndex]="10000">
       <app-client-ui-sidebar
         (newItemEvent)="closeHandsetSidenav()"
       ></app-client-ui-sidebar>
     </p-sidebar>
+    <!-- handset sidenav END -->
+    <!-- media-tablet-up sidenav START -->
     <div class="layout-content__sidenav">
       <app-client-ui-sidebar></app-client-ui-sidebar>
     </div>
+    <!-- media-tablet-up sidenav START -->
     <div class="layout-content__container">
       <ui-container><router-outlet></router-outlet></ui-container>
     </div>
