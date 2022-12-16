@@ -51,7 +51,7 @@ export class AllProductsApiService {
     console.log(
       `https://backend-for-applicants.smartoneclub.com/product/${productId}/image`
     );
-    return this.http.post<Product>(
+    return this.http.post(
       `https://backend-for-applicants.smartoneclub.com/product/${productId}/image`,
       formData
     );

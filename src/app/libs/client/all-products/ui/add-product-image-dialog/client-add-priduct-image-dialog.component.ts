@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
@@ -21,7 +22,8 @@ export class ClientAddPriductImageDialogComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private apiService: AllProductsApiService
+    private apiService: AllProductsApiService,
+    private changeDetectionRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {}
@@ -41,14 +43,14 @@ export class ClientAddPriductImageDialogComponent implements OnInit {
     this.apiService.addProductImage(this.product.id!, this.file).subscribe({
       error: (err) => console.error(err),
       complete: () => {
-        console.log('Uplodar success');
+        this.showDialog();
         this.messageService.add({
           severity: 'success',
           summary: 'Confirmed',
           detail: 'Product img uploaded',
         });
+        this.changeDetectionRef.markForCheck();
       },
     });
-    this.showDialog();
   }
 }
