@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, shareReplay } from 'rxjs';
+import { catchError, Observable, of, shareReplay } from 'rxjs';
 import {
   AddProductFormModel,
   Product,
@@ -21,7 +21,13 @@ export class AllProductsApiService {
       .get<productsGetRes>(
         'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
       )
-      .pipe(shareReplay(1));
+      .pipe(
+        shareReplay(1),
+        catchError((error: HttpErrorResponse) => {
+          console.error(error);
+          return (this.productsArr$ = of(undefined));
+        })
+      );
     return this.productsArr$;
   }
 
