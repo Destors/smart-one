@@ -1,8 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { finalize, Observable, Subscription, tap } from 'rxjs';
 import { AllProductsApiService } from '../../api/all-products-api.service';
-import { ProductHttpResponse } from '../../common/product.interface';
+import { Product, ProductHttpResponse } from '../../common/product.interface';
 
 @Component({
   selector: 'app-client-all-products-table',
@@ -10,28 +14,34 @@ import { ProductHttpResponse } from '../../common/product.interface';
   styleUrls: ['./client-all-products-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClientAllProductsTableComponent implements OnInit {
-  products$: Observable<ProductHttpResponse | undefined>;
+export class ClientAllProductsTableComponent implements OnInit, OnDestroy {
+  products$: Observable<Product[]>;
+  subscriptions: Subscription = new Subscription();
 
   constructor(
     private productsService: AllProductsApiService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-    this.products$ = this.productsService.productsArr$;
+    this.products$ = this.productsService.productsShare$;
   }
 
   ngOnInit() {}
 
-  getProducts(): Observable<ProductHttpResponse | undefined> {
-    return (this.products$ = this.productsService.getAllProducts());
+  updateTable() {
+    this.subscriptions.add(
+      this.productsService
+        .getAllProducts()
+        .pipe(
+          finalize(() => {
+            this.products$ = this.productsService.productsShare$;
+            this.changeDetectorRef.markForCheck();
+          })
+        )
+        .subscribe()
+    );
   }
 
-  updateTable() {
-    this.getProducts().subscribe({
-      error: (e: any) => console.error(e),
-      complete: () => {
-        this.changeDetectorRef.markForCheck();
-      },
-    });
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

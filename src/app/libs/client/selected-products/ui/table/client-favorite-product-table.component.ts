@@ -1,11 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
-import { AllProductsApiService } from 'src/app/libs/client/all-products/api/all-products-api.service';
 import {
-  Product,
-  ProductHttpResponse,
-} from 'src/app/libs/client/all-products/common/product.interface';
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { finalize, map, Observable, of, Subscription } from 'rxjs';
+import { AllProductsApiService } from 'src/app/libs/client/all-products/api/all-products-api.service';
+import { Product } from 'src/app/libs/client/all-products/common/product.interface';
 import { LocalSyncStorage } from 'src/app/libs/core/storage/local/local-sync.storage';
 
 @Component({
@@ -14,27 +15,24 @@ import { LocalSyncStorage } from 'src/app/libs/core/storage/local/local-sync.sto
   styleUrls: ['./client-favorite-product-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClientFavoriteProductTableComponent implements OnInit {
-  products$: Observable<ProductHttpResponse | undefined>;
+export class ClientFavoriteProductTableComponent implements OnInit, OnDestroy {
   favoriteProducts$: Observable<Product[] | undefined> = of(undefined);
+  subscriptions: Subscription = new Subscription();
 
   constructor(
     private productsService: AllProductsApiService,
     private changeDetectorRef: ChangeDetectorRef,
     private localStorage: LocalSyncStorage
   ) {
-    this.products$ = this.productsService.productsArr$;
-    this.favoriteProducts$ = this.getFavoriteProduct(this.products$);
+    this.favoriteProducts$ = this.getFavoriteProduct();
   }
 
   ngOnInit() {}
 
-  getFavoriteProduct(
-    productsArr$: Observable<ProductHttpResponse | undefined>
-  ): Observable<Product[] | undefined> {
-    return productsArr$.pipe(
+  getFavoriteProduct(): Observable<Product[] | undefined> {
+    return this.productsService.productsShare$.pipe(
       map((val) =>
-        val?.products
+        val
           .map((x) => {
             x.favorite = this.getProductLocalState(x.id);
             return x;
@@ -49,17 +47,21 @@ export class ClientFavoriteProductTableComponent implements OnInit {
     return localData ? true : false;
   }
 
-  getProducts() {
-    return (this.products$ = this.productsService.getAllProducts());
+  updateTable() {
+    this.subscriptions.add(
+      this.productsService
+        .getAllProducts()
+        .pipe(
+          finalize(() => {
+            this.favoriteProducts$ = this.getFavoriteProduct();
+            this.changeDetectorRef.markForCheck();
+          })
+        )
+        .subscribe()
+    );
   }
 
-  updateTable() {
-    this.getProducts().subscribe({
-      error: (e: any) => console.error(e),
-      complete: () => {
-        this.favoriteProducts$ = this.getFavoriteProduct(this.products$);
-        this.changeDetectorRef.markForCheck();
-      },
-    });
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }
