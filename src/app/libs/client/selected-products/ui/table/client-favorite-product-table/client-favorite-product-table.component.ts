@@ -48,4 +48,18 @@ export class ClientFavoriteProductTableComponent implements OnInit {
     let localData = this.localStorage.getItem(id!.toString());
     return localData ? true : false;
   }
+
+  getProducts() {
+    return (this.products$ = this.productsService.getAllProducts());
+  }
+
+  updateTable() {
+    this.getProducts().subscribe({
+      error: (e: any) => console.error(e),
+      complete: () => {
+        this.favoriteProducts$ = this.getFavoriteProduct(this.products$);
+        this.changeDetectorRef.markForCheck();
+      },
+    });
+  }
 }
