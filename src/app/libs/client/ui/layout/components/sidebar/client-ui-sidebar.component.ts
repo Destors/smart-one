@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { NAVIGATION_PATHS } from 'src/app/libs/core/navigation/common/navigation.interface';
 
 @Component({
   selector: 'app-client-ui-sidebar',
@@ -23,7 +24,7 @@ export class ClientUiSidebarComponent implements OnInit {
           {
             label: 'All Products',
             icon: 'pi pi-pw pi-file',
-            routerLink: ['all-products-page'],
+            routerLink: [NAVIGATION_PATHS.products],
             routerLinkActiveOptions: { exact: true },
             command: () => {
               this.closeSidenavEvent.emit();
@@ -32,7 +33,7 @@ export class ClientUiSidebarComponent implements OnInit {
           {
             label: 'Selected product',
             icon: 'pi pi-fw pi-star',
-            routerLink: ['selected-products-page'],
+            routerLink: [NAVIGATION_PATHS.favorites],
             routerLinkActiveOptions: { exact: true },
             command: () => {
               this.closeSidenavEvent.emit();
