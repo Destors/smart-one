@@ -1,11 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  BehaviorSubject,
   catchError,
   map,
   Observable,
   retry,
   shareReplay,
+  switchMap,
   throwError,
 } from 'rxjs';
 import {
@@ -18,14 +20,23 @@ import {
   providedIn: 'root',
 })
 export class AllProductsApiService {
-  // Creating a global variable productsArr$ to avoid unnecessary requests to the server
-  productsShare$: Observable<Product[]> = this.getAllProducts();
+  // Creating a global variable productsShare$ to avoid unnecessary requests to the server.
+  productsShare$: Observable<Product[]>;
+  updateProductsEvent$ = new BehaviorSubject(true);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.productsShare$ = this.updateProductsEvent$.pipe(
+      switchMap(() => this.getAllProducts())
+    );
+  }
+
+  updateProducts() {
+    this.updateProductsEvent$.next(true);
+  }
 
   public getAllProducts(): Observable<Product[]> {
     console.log('fetching...');
-    return (this.productsShare$ = this.http
+    return this.http
       .get<ProductHttpResponse>(
         'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
       )
@@ -34,7 +45,7 @@ export class AllProductsApiService {
         map((val) => val.products),
         shareReplay(1),
         catchError(this.handleError)
-      ));
+      );
   }
 
   public addProduct(form: AddProductFormModel) {
