@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { finalize, Observable, tap } from 'rxjs';
 import { AllProductsApiService } from '../../api/all-products-api.service';
 import { Product, ProductHttpResponse } from '../../common/product.interface';
 
@@ -22,16 +22,15 @@ export class ClientAllProductsTableComponent implements OnInit {
 
   ngOnInit() {}
 
-  getProducts(): Observable<Product[]> {
-    return (this.products$ = this.productsService.getAllProducts());
-  }
-
   updateTable() {
-    this.getProducts().subscribe({
-      error: (e: any) => console.error(e),
-      complete: () => {
-        this.changeDetectorRef.markForCheck();
-      },
-    });
+    this.productsService
+      .getAllProducts()
+      .pipe(
+        finalize(() => {
+          this.products$ = this.productsService.productsShare$;
+          this.changeDetectorRef.markForCheck();
+        })
+      )
+      .subscribe();
   }
 }

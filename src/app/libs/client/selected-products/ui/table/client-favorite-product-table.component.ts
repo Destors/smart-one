@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { finalize, map, Observable, of } from 'rxjs';
 import { AllProductsApiService } from 'src/app/libs/client/all-products/api/all-products-api.service';
 import { Product } from 'src/app/libs/client/all-products/common/product.interface';
 import { LocalSyncStorage } from 'src/app/libs/core/storage/local/local-sync.storage';
@@ -46,17 +46,16 @@ export class ClientFavoriteProductTableComponent implements OnInit {
     return localData ? true : false;
   }
 
-  getProducts() {
-    return (this.products$ = this.productsService.getAllProducts());
-  }
-
   updateTable() {
-    this.getProducts().subscribe({
-      error: (e: any) => console.error(e),
-      complete: () => {
-        this.favoriteProducts$ = this.getFavoriteProduct(this.products$);
-        this.changeDetectorRef.markForCheck();
-      },
-    });
+    this.productsService
+      .getAllProducts()
+      .pipe(
+        finalize(() => {
+          this.products$ = this.productsService.productsShare$;
+          this.favoriteProducts$ = this.getFavoriteProduct(this.products$);
+          this.changeDetectorRef.markForCheck();
+        })
+      )
+      .subscribe();
   }
 }
