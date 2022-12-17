@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AllProductsApiService } from '../../api/all-products-api.service';
 import { ProductHttpResponse } from '../../common/product.interface';
 

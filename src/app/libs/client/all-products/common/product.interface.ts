@@ -9,6 +9,7 @@ export interface Product {
   brand: string;
   category: string;
   description: string;
+  favorite?: boolean;
 }
 
 export interface AddProductFormModel extends Product {}
