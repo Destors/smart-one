@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Observable, shareReplay } from 'rxjs';
 import { AllProductsApiService } from '../../api/all-products-api.service';
-import { productHttpResponse } from '../../common/product.interface';
+import { ProductHttpResponse } from '../../common/product.interface';
 
 @Component({
   selector: 'app-client-all-products-table',
@@ -11,7 +11,7 @@ import { productHttpResponse } from '../../common/product.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientAllProductsTableComponent implements OnInit {
-  products$: Observable<productHttpResponse | undefined>;
+  products$: Observable<ProductHttpResponse | undefined>;
 
   constructor(
     private productsService: AllProductsApiService,
@@ -22,7 +22,7 @@ export class ClientAllProductsTableComponent implements OnInit {
 
   ngOnInit() {}
 
-  getProducts(): Observable<productHttpResponse | undefined> {
+  getProducts(): Observable<ProductHttpResponse | undefined> {
     return (this.products$ = this.productsService.getAllProducts());
   }
 

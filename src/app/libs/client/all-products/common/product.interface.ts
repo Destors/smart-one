@@ -1,4 +1,4 @@
-export interface productHttpResponse {
+export interface ProductHttpResponse {
   products: Product[];
 }
 
