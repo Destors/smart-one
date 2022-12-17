@@ -1,6 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { finalize, Observable, tap } from 'rxjs';
+import { finalize, Observable, Subscription, tap } from 'rxjs';
 import { AllProductsApiService } from '../../api/all-products-api.service';
 import { Product, ProductHttpResponse } from '../../common/product.interface';
 
@@ -10,8 +14,9 @@ import { Product, ProductHttpResponse } from '../../common/product.interface';
   styleUrls: ['./client-all-products-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClientAllProductsTableComponent implements OnInit {
+export class ClientAllProductsTableComponent implements OnInit, OnDestroy {
   products$: Observable<Product[]>;
+  subscriptions: Subscription = new Subscription();
 
   constructor(
     private productsService: AllProductsApiService,
@@ -23,14 +28,20 @@ export class ClientAllProductsTableComponent implements OnInit {
   ngOnInit() {}
 
   updateTable() {
-    this.productsService
-      .getAllProducts()
-      .pipe(
-        finalize(() => {
-          this.products$ = this.productsService.productsShare$;
-          this.changeDetectorRef.markForCheck();
-        })
-      )
-      .subscribe();
+    this.subscriptions.add(
+      this.productsService
+        .getAllProducts()
+        .pipe(
+          finalize(() => {
+            this.products$ = this.productsService.productsShare$;
+            this.changeDetectorRef.markForCheck();
+          })
+        )
+        .subscribe()
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

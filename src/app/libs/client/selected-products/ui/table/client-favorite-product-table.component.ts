@@ -1,6 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { finalize, map, Observable, of } from 'rxjs';
+import { finalize, map, Observable, of, Subscription } from 'rxjs';
 import { AllProductsApiService } from 'src/app/libs/client/all-products/api/all-products-api.service';
 import { Product } from 'src/app/libs/client/all-products/common/product.interface';
 import { LocalSyncStorage } from 'src/app/libs/core/storage/local/local-sync.storage';
@@ -11,8 +15,9 @@ import { LocalSyncStorage } from 'src/app/libs/core/storage/local/local-sync.sto
   styleUrls: ['./client-favorite-product-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClientFavoriteProductTableComponent implements OnInit {
+export class ClientFavoriteProductTableComponent implements OnInit, OnDestroy {
   favoriteProducts$: Observable<Product[] | undefined> = of(undefined);
+  subscriptions: Subscription = new Subscription();
 
   constructor(
     private productsService: AllProductsApiService,
@@ -43,14 +48,20 @@ export class ClientFavoriteProductTableComponent implements OnInit {
   }
 
   updateTable() {
-    this.productsService
-      .getAllProducts()
-      .pipe(
-        finalize(() => {
-          this.favoriteProducts$ = this.getFavoriteProduct();
-          this.changeDetectorRef.markForCheck();
-        })
-      )
-      .subscribe();
+    this.subscriptions.add(
+      this.productsService
+        .getAllProducts()
+        .pipe(
+          finalize(() => {
+            this.favoriteProducts$ = this.getFavoriteProduct();
+            this.changeDetectorRef.markForCheck();
+          })
+        )
+        .subscribe()
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

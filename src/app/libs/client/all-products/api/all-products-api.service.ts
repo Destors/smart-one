@@ -25,7 +25,7 @@ export class AllProductsApiService {
 
   public getAllProducts(): Observable<Product[]> {
     console.log('fetching...');
-    return this.http
+    return (this.productsShare$ = this.http
       .get<ProductHttpResponse>(
         'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
       )
@@ -34,7 +34,7 @@ export class AllProductsApiService {
         map((val) => val.products),
         shareReplay(1),
         catchError(this.handleError)
-      );
+      ));
   }
 
   public addProduct(form: AddProductFormModel) {
