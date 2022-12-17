@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   catchError,
+  map,
   Observable,
-  of,
   retry,
   shareReplay,
   throwError,
@@ -19,17 +19,21 @@ import {
 })
 export class AllProductsApiService {
   // Creating a global variable productsArr$ to avoid unnecessary requests to the server
-  productsArr$: Observable<ProductHttpResponse | undefined> =
-    this.getAllProducts();
+  productsShare$: Observable<Product[]> = this.getAllProducts();
 
   constructor(private http: HttpClient) {}
 
-  public getAllProducts() {
-    return (this.productsArr$ = this.http
+  public getAllProducts(): Observable<Product[]> {
+    return (this.productsShare$ = this.http
       .get<ProductHttpResponse>(
         'https://backend-for-applicants.smartoneclub.com/products?limit=0&skip=0&ordering=id'
       )
-      .pipe(retry(3), shareReplay(1), catchError(this.handleError)));
+      .pipe(
+        retry(3),
+        map((val) => val.products),
+        shareReplay(1),
+        catchError(this.handleError)
+      ));
   }
 
   public addProduct(form: AddProductFormModel) {
