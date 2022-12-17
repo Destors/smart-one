@@ -12,7 +12,6 @@ import { LocalSyncStorage } from 'src/app/libs/core/storage/local/local-sync.sto
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientFavoriteProductTableComponent implements OnInit {
-  products$: Observable<Product[]>;
   favoriteProducts$: Observable<Product[] | undefined> = of(undefined);
 
   constructor(
@@ -20,16 +19,13 @@ export class ClientFavoriteProductTableComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef,
     private localStorage: LocalSyncStorage
   ) {
-    this.products$ = this.productsService.productsShare$;
-    this.favoriteProducts$ = this.getFavoriteProduct(this.products$);
+    this.favoriteProducts$ = this.getFavoriteProduct();
   }
 
   ngOnInit() {}
 
-  getFavoriteProduct(
-    productsArr$: Observable<Product[]>
-  ): Observable<Product[] | undefined> {
-    return productsArr$.pipe(
+  getFavoriteProduct(): Observable<Product[] | undefined> {
+    return this.productsService.productsShare$.pipe(
       map((val) =>
         val
           .map((x) => {
@@ -51,8 +47,7 @@ export class ClientFavoriteProductTableComponent implements OnInit {
       .getAllProducts()
       .pipe(
         finalize(() => {
-          this.products$ = this.productsService.productsShare$;
-          this.favoriteProducts$ = this.getFavoriteProduct(this.products$);
+          this.favoriteProducts$ = this.getFavoriteProduct();
           this.changeDetectorRef.markForCheck();
         })
       )
