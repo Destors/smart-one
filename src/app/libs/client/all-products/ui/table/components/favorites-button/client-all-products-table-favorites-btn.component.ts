@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { LocalSyncStorage } from 'src/app/libs/core/storage/local/local-sync.storage';
 import { Product } from '../../../../common/product.interface';
@@ -10,6 +10,7 @@ import { Product } from '../../../../common/product.interface';
 })
 export class ClientAllProductsTableFavoritesBtnComponent implements OnInit {
   @Input() product!: Product;
+  @Output() updateTableEvent = new EventEmitter<string>();
 
   productLocalState!: boolean;
 
@@ -32,6 +33,7 @@ export class ClientAllProductsTableFavoritesBtnComponent implements OnInit {
   setProductLocalState() {
     if (!this.productLocalState) {
       this.localStorage.removeItem(this.product.id!.toString());
+      this.updateTableEvent.emit();
       console.log('removed local');
       this.messageService.add({
         severity: 'info',
