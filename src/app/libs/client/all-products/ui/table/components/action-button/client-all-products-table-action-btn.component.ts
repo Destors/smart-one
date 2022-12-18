@@ -15,7 +15,7 @@ import {
 } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { AllProductsApiService } from '../../../../api/all-products-api.service';
+import { ProductsApiService } from '../../../../../api/products-api.service';
 import { Product } from '../../../../common/product.interface';
 import { ClientEditProductDialogComponent } from '../../../edit-product-dialog/client-edit-product-dialog.component';
 @Component({
@@ -37,7 +37,7 @@ export class ClientAllProductsTableActionBtnComponent
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private apiService: AllProductsApiService,
+    private apiService: ProductsApiService,
     public dialogService: DialogService
   ) {}
 

@@ -2,23 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClientSelectedProductsPageRoutingModule } from './client-selected-products-page-routing.module';
 import { ClientSelectedProductsPageComponent } from './client-selected-products-page.component';
-import { AllProductsApiService } from '../../all-products/api/all-products-api.service';
+import { ProductsApiService } from '../../api/products-api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
 import { ClientFavoriteProductTableModule } from '../ui/table/client-favorite-product-table.module';
-import { HttpClientModule } from '@angular/common/http';
+import { ProductsApiModule } from '../../api/products-api.module';
 
 @NgModule({
   declarations: [ClientSelectedProductsPageComponent],
   imports: [
     CommonModule,
+    ProductsApiModule,
     ClientSelectedProductsPageRoutingModule,
     ClientFavoriteProductTableModule,
     ToastModule,
     CardModule,
-    HttpClientModule,
   ],
-  providers: [AllProductsApiService, MessageService],
+  providers: [MessageService],
 })
 export class ClientSelectedProductsPageModule {}

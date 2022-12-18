@@ -5,7 +5,6 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ButtonModule,
     InputTextModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule,
     InputTextareaModule,
   ],

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { AllProductsApiService } from '../../api/all-products-api.service';
+import { ProductsApiService } from '../../../api/products-api.service';
 import { ProductFormField, Product } from '../../common/product.interface';
 
 @Component({
@@ -19,7 +19,7 @@ export class ClientEditProductDialogComponent implements OnInit {
   submitted = false;
   displayModal: boolean = false;
   constructor(
-    private apiService: AllProductsApiService,
+    private apiService: ProductsApiService,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
     private messageService: MessageService

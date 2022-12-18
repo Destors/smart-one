@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { AllProductsApiService } from '../../api/all-products-api.service';
+import { ProductsApiService } from '../../../api/products-api.service';
 import { Product } from '../../common/product.interface';
 
 @Component({
@@ -22,7 +22,7 @@ export class ClientAddPriductImageDialogComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private apiService: AllProductsApiService,
+    private apiService: ProductsApiService,
     private changeDetectionRef: ChangeDetectorRef
   ) {}
 
