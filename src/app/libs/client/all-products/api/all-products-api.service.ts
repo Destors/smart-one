@@ -7,6 +7,8 @@ import {
   Observable,
   retry,
   shareReplay,
+  startWith,
+  Subject,
   switchMap,
   throwError,
 } from 'rxjs';
@@ -22,16 +24,18 @@ import {
 export class AllProductsApiService {
   // Creating a global variable productsShare$ to avoid unnecessary requests to the server.
   productsShare$: Observable<Product[]>;
-  updateProductsEvent$ = new BehaviorSubject(true);
+  updateProductsEvent$ = new Subject();
 
   constructor(private http: HttpClient) {
     this.productsShare$ = this.updateProductsEvent$.pipe(
-      switchMap(() => this.getAllProducts())
+      startWith(''),
+      switchMap(() => this.getAllProducts()),
+      shareReplay(1)
     );
   }
 
   updateProducts() {
-    this.updateProductsEvent$.next(true);
+    this.updateProductsEvent$.next('fetching update');
   }
 
   public getAllProducts(): Observable<Product[]> {
@@ -43,7 +47,6 @@ export class AllProductsApiService {
       .pipe(
         retry(3),
         map((val) => val.products),
-        shareReplay(1),
         catchError(this.handleError)
       );
   }
