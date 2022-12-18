@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { AllProductsApiService } from '../../api/all-products-api.service';
+import { AllProductsApiService } from '../../../api/all-products-api.service';
 import { Product } from '../../common/product.interface';
 
 @Component({

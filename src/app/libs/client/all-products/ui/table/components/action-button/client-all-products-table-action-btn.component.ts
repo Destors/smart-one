@@ -15,7 +15,7 @@ import {
 } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { AllProductsApiService } from '../../../../api/all-products-api.service';
+import { AllProductsApiService } from '../../../../../api/all-products-api.service';
 import { Product } from '../../../../common/product.interface';
 import { ClientEditProductDialogComponent } from '../../../edit-product-dialog/client-edit-product-dialog.component';
 @Component({

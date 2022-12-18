@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { AllProductsApiService } from 'src/app/libs/client/all-products/api/all-products-api.service';
+import { AllProductsApiService } from 'src/app/libs/client/api/all-products-api.service';
 import { Product } from 'src/app/libs/client/all-products/common/product.interface';
 import { LocalSyncStorage } from 'src/app/libs/core/storage/local/local-sync.storage';
 

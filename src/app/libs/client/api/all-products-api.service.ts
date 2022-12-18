@@ -16,7 +16,7 @@ import {
   AddProductFormModel,
   Product,
   ProductHttpResponse,
-} from '../common/product.interface';
+} from '../all-products/common/product.interface';
 
 @Injectable({
   providedIn: 'root',
