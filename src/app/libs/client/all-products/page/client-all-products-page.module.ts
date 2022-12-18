@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ClientAllProductsPageRoutingModule } from './client-all-products-page-routing.module';
 import { ClientAllProductsPageComponent } from './client-all-products-page.component';
 import { ClientAllProductsTableModule } from '../ui/table/client-all-products-table.module';
-import { AllProductsApiService } from '../../api/all-products-api.service';
+import { ProductsApiService } from '../../api/products-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ClientAddProductDialogModule } from '../ui/add-product-dialog/client-add-product-dialog.module';
 import { CardModule } from 'primeng/card';
@@ -21,6 +21,6 @@ import { ToastModule } from 'primeng/toast';
     ToastModule,
     CardModule,
   ],
-  providers: [AllProductsApiService, MessageService],
+  providers: [ProductsApiService, MessageService],
 })
 export class ClientAllProductsPageModule {}

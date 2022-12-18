@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
-  BehaviorSubject,
   catchError,
   map,
   Observable,
@@ -21,7 +20,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class AllProductsApiService {
+export class ProductsApiService {
   // Creating a global variable productsShare$ to avoid unnecessary requests to the server.
   productsShare$: Observable<Product[]>;
   updateProductsEvent$ = new Subject();
