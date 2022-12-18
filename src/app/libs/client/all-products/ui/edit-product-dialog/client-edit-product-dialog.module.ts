@@ -4,8 +4,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { ClientEditProductDialogComponent } from './client-edit-product-dialog.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [ClientEditProductDialogComponent],
@@ -15,8 +15,8 @@ import { ClientEditProductDialogComponent } from './client-edit-product-dialog.c
     ButtonModule,
     InputTextModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule,
+    InputTextareaModule,
   ],
   exports: [ClientEditProductDialogComponent],
 })

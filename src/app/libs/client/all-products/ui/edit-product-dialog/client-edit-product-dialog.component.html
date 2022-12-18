@@ -35,16 +35,18 @@
     formControlName="category"
   />
 
-  <label for="description" class="block mb-2">Description</label>
-  <input
-    class="mb-2"
+  <label for="description" class="block mb-2">Description*</label>
+  <textarea
+    rows="5"
+    cols="30"
+    pInputTextarea
+    [autoResize]="true"
     type="text"
     id="description"
-    pInputText
     formControlName="description"
-  />
+  ></textarea>
 
-  <div class="flex">
+  <div class="flex justify-content-end mt-3">
     <p-button
       icon="pi pi-plus"
       label="Save"
