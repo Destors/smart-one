@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   map,
@@ -18,10 +18,14 @@ import {
   providedIn: 'root',
 })
 
-// All error throws from ServerErrorInterceptor
+// Important, All error throws from ServerErrorInterceptor
 export class ProductsApiService {
-  // Creating a global variable productsShare$ to avoid unnecessary requests to the server.
+  // Creating a global productsShare$ to avoid unnecessary requests to the server when route change.
   productsShare$: Observable<Product[]>;
+
+  // Creating a global updateProductsEvent$...
+  // to send new requests to the server when the data changes (via the switch map trigger),
+  // without using manual subscriptions..
   updateProductsEvent$ = new Subject();
 
   constructor(private http: HttpClient) {
@@ -33,6 +37,7 @@ export class ProductsApiService {
   }
 
   public updateProducts() {
+    // Use for fetching new data from the server
     this.updateProductsEvent$.next('fetching update');
   }
 
