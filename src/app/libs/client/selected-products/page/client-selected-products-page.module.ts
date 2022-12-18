@@ -7,18 +7,18 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
 import { ClientFavoriteProductTableModule } from '../ui/table/client-favorite-product-table.module';
-import { HttpClientModule } from '@angular/common/http';
+import { ProductsApiModule } from '../../api/products-api.module';
 
 @NgModule({
   declarations: [ClientSelectedProductsPageComponent],
   imports: [
     CommonModule,
+    ProductsApiModule,
     ClientSelectedProductsPageRoutingModule,
     ClientFavoriteProductTableModule,
     ToastModule,
     CardModule,
-    HttpClientModule,
   ],
-  providers: [ProductsApiService, MessageService],
+  providers: [MessageService],
 })
 export class ClientSelectedProductsPageModule {}
